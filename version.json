@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "size": 294590,
-  "sha256": "5bdf41c2baf8ef326758f50affbe6d65c8a9ec64f31b886dd3752f413305a93f",
-  "notes": "Neu: Jeder Krieger hat jetzt eigene Freischalt-Aufgaben. Schaffe Level, besiege Gegner und Bosse oder kaufe Krieger mit Münzen."
+  "version": 3,
+  "size": 306566,
+  "sha256": "549f32ec3a569831d249d8ce38a778cb48be6dadf558cc1f057fb2fae45a6a04",
+  "notes": "Neu: Potato Man, die Alien-Kartoffel mit Superkraft, Laseraugen und Flug. Freischaltung: 1000 Gegner besiegen."
 }
