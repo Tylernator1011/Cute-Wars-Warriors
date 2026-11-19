@@ -1,6 +1,6 @@
 {
-  "version": 16,
-  "size": 510729,
-  "sha256": "cd136caf208b1b09ccf5120b24f50ee8b5d9fbf326a158eb452678dbb2ceb153",
-  "notes": "Story-Modus: keine Stufen und Upgrades mehr, sondern Ausrüstung. Held und Mira haben eigene Ausrüstung, der Held kann 5 Waffenarten mit eigenen Angriffen nutzen, Mira 4 Stäbe. Truhen in der Welt und Kalles Schmiede."
+  "version": 17,
+  "size": 534137,
+  "sha256": "ff25fd6a67edcb0e563f45c618f3af0df53418277370100d6b9b0b21694defe0",
+  "notes": "Neu: Burgfried, Solarius, Monolith, Rotmähne, Prof. Nachtlicht und Jadeon mit eigenen Pixel-Modellen."
 }
