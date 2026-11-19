@@ -1,6 +1,6 @@
 {
-  "version": 25,
-  "size": 703360,
-  "sha256": "7fb7ff3b717e517d5338f16f748a75a5096e3bdee45654c88f49794ee148bb1b",
-  "notes": "Mehr Animationen: langsameres Gehen, eigene Renn-Animation, Atmen, Rückstoß beim Schießen, Nachladen, Granatenwurf, Cyber-Schlag, Ducken beim Ausweichen, Zusammensacken beim Sterben, Schrittgeräusche"
+  "version": 26,
+  "size": 771307,
+  "sha256": "8e4940824067171f27a8e686f837c754b1bde3a39487df2f41579a3a71b92848",
+  "notes": "Heldengeschichte Teil 2 bis 10: vier neue Gebiete (Sandmeer, Nebelsumpf, Frostkamm, Aschenland mit Schattenfeste), 27 neue Missionen, Zeitreise, neue Bosse und Verbündete, Finale gegen Dämonenkönig Morvath"
 }

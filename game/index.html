@@ -111,7 +111,7 @@ button:disabled{background:#4a3a5e;color:#8b7a9e;box-shadow:none;cursor:not-allo
 <div id="scr-end" class="screen dim hidden"><h2 id="e-t"></h2><div class="big" id="e-r"></div><div class="panel stats" id="e-s"></div><div class="row"><button id="b-next" class="hidden">Nächstes Level</button><button id="b-again">Nochmal</button><button id="b-menu">Zum Menü</button></div></div>
 <script>
 'use strict';
-const GAME_BUILD=25;let ctx=document.createElement('canvas').getContext('2d');let parts=[];const SCALE=1;
+const GAME_BUILD=26;let ctx=document.createElement('canvas').getContext('2d');let parts=[];const SCALE=1;
 const ITEMS={kaktushelm:{col:'#5cae5a'},kaktusbrustpanzer:{col:'#5cae5a'},kaktushose:{col:'#5cae5a'},kupferhelm:{col:'#e08a4a'},kupferbrustpanzer:{col:'#e08a4a'},kupferhose:{col:'#e08a4a'},eisenhelm:{col:'#c9c4ba'},eisenbrustpanzer:{col:'#c9c4ba'},eisenhose:{col:'#c9c4ba'},goldhelm:{col:'#ffd23a'},goldbrustpanzer:{col:'#ffd23a'},goldhose:{col:'#ffd23a'},fellhelm:{col:'#c47a3a'},fellbrustpanzer:{col:'#c47a3a'},fellhose:{col:'#c47a3a'},bienenhelm:{col:'#f2c84b'},bienenbrustpanzer:{col:'#f2c84b'},bienenhose:{col:'#f2c84b'},kaktusstiefel:{col:'#5cae5a'},kupferstiefel:{col:'#e08a4a'},eisenstiefel:{col:'#c9c4ba'},goldstiefel:{col:'#ffd23a'},fellstiefel:{col:'#c47a3a'},bienenstiefel:{col:'#f2c84b'},federkrone:{col:'#c09432'},goldkettenpanzer:{col:'#c09432'},tigerfellgewand:{col:'#7e1f30'},wolkenstiefel:{col:'#c09432'},wuschelkrone:{col:'#ffd23a'},stahlhelm:{col:'#9aa6b8'},stahlbrustpanzer:{col:'#9aa6b8'},stahlhose:{col:'#9aa6b8'},stahlstiefel:{col:'#9aa6b8'},obsidianhelm:{col:'#4a3a5e'},obsidianbrustpanzer:{col:'#4a3a5e'},obsidianhose:{col:'#4a3a5e'},obsidianstiefel:{col:'#4a3a5e'},froschkrone:{col:'#5aae4a'},weltraumhelm:{col:'#d8e2f0'},weltraumbrustpanzer:{col:'#d8e2f0'},weltraumhose:{col:'#d8e2f0'},weltraumstiefel:{col:'#d8e2f0'},wuestenhelm:{col:'#efe4cc'},wuestenbrustpanzer:{col:'#efe4cc'},wuestenhose:{col:'#efe4cc'},wuestenstiefel:{col:'#efe4cc'},seraphimhelm:{col:'#f0eef8'},seraphimbrustpanzer:{col:'#f0eef8'},seraphimhose:{col:'#f0eef8'},seraphimstiefel:{col:'#f0eef8'},hoellenfuersthelm:{col:'#2a1418'},hoellenfuerstbrustpanzer:{col:'#2a1418'},hoellenfuersthose:{col:'#2a1418'},hoellenfuerststiefel:{col:'#2a1418'},erzengelhelm:{col:'#e8c860'},erzengelbrustpanzer:{col:'#e8c860'},erzengelhose:{col:'#e8c860'},erzengelstiefel:{col:'#e8c860'},donnerhelm:{col:'#4a5260'},donnerbrustpanzer:{col:'#5e6672'},donnerhose:{col:'#552a22'},donnerstiefel:{col:'#4a2a14'},berserkerhelm:{col:'#5a4838'},berserkerbrustpanzer:{col:'#5a4838'},berserkerhose:{col:'#2e2e3e'},berserkerstiefel:{col:'#4a2a14'},drachenhelm:{col:'#c8402a'},drachenbrustpanzer:{col:'#c8402a'},drachenhose:{col:'#c8402a'},drachenstiefel:{col:'#c8402a'},gottkoenighelm:{col:'#1d1730'},gottkoenigbrustpanzer:{col:'#1d1730'},gottkoenighose:{col:'#1d1730'},gottkoenigstiefel:{col:'#1d1730'},schattenwandlerhelm:{col:'#2c2446'},schattenwandlerbrustpanzer:{col:'#2c2446'},schattenwandlerhose:{col:'#2c2446'},schattenwandlerstiefel:{col:'#2c2446'}};
 const rand=(a,b)=>a+Math.random()*(b-a), randi=(a,b)=>Math.floor(rand(a,b+1));
 const clamp=(v,a,b)=>v<a?a:v>b?b:v;
@@ -2307,6 +2307,7 @@ const SX={
  stone:mk(16,16,(px,rect)=>{rect(0,0,16,16,'#8e8a86');for(const [x,y,w,h] of [[0,0,7,5],[8,0,8,5],[0,6,4,5],[5,6,6,5],[12,6,4,5],[0,12,8,4],[9,12,7,4]]){rect(x,y,w-1,h-1,'#a9a49e');rect(x,y,w-1,1,'#bdb8b2')}}),
  soil:mk(16,16,(px,rect)=>{rect(0,0,16,16,'#7a5232');for(let y=0;y<16;y+=4){rect(0,y,16,2,'#5e3e24');rect(0,y+2,16,1,'#8c6240')}for(let i=0;i<6;i++)px(hash(i,9,1)*16|0,hash(i,4,3)*16|0,'#a87a52')}),
  door:mk(12,20,(px,rect)=>{rect(0,0,12,20,'#3a2414');rect(1,1,10,19,'#7a4a28');for(const x of [3,6,9])rect(x,1,1,19,'#5a3418');rect(1,1,10,1,'#9a643a');px(9,11,'#ffd23a');px(9,12,'#c8961a')}),
+ dark:mk(16,16,(px,rect)=>{rect(0,0,16,16,'#2a2230');for(const [x,y,w,h] of [[0,0,7,5],[8,0,8,5],[0,6,4,5],[5,6,6,5],[12,6,4,5],[0,12,8,4],[9,12,7,4]]){rect(x,y,w-1,h-1,'#3a3044');rect(x,y,w-1,1,'#4a405a')}px(3,3,'#5a1a2a');px(11,9,'#5a1a2a')}),
  win:mk(12,12,(px,rect)=>{rect(0,0,12,12,'#4a2c18');rect(1,1,10,10,'#ffd88a');rect(1,1,10,4,'#fff0c0');rect(5,1,2,10,'#4a2c18');rect(1,5,10,2,'#4a2c18')}),
  winD:mk(12,12,(px,rect)=>{rect(0,0,12,12,'#4a2c18');rect(1,1,10,10,'#2a3a5a');rect(1,1,10,3,'#3f5680');rect(5,1,2,10,'#4a2c18');rect(1,5,10,2,'#4a2c18')}),
 };
@@ -2337,8 +2338,8 @@ function setStoryTime(kind){G.tod=kind;setSky(storySky(kind));G.fogC=rgb({day:'#
 
 // ---------- Welt ----------
 const VC=[90,112],HOUSES=[[76,103,6,5,'#c8584a','held'],[94,96,8,6,'#5a78c0','bruno'],[98,116,6,5,'#c8584a','kalle'],[74,117,5,5,'#9a6aa8','rosa'],[82,124,6,5,'#c8784a'],[96,125,5,4,'#5a9a6a'],[77,94,5,4,'#c89a4a']];
-function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Reich':'Wiesental'};MW=180;MH=150;MPW=MW*TS;MPH=MH*TS;GW=Math.ceil(MPW/CELL)+1;GH=Math.ceil(MPH/CELL)+1;grid=Array.from({length:GW*GH},()=>[]);
- const seed=4242,r=mulberry(seed),N=MW*MH,block=new Uint8Array(N).fill(1),hgt=new Uint8Array(N),path=new Uint8Array(N),gnd=new Uint8Array(N),wm=new Uint8Array(N),plank=new Uint8Array(N),deco=[];G.block=block;G.bases=[];G.keep=null;G.deco=deco;
+function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Reich':'Wiesental'};MW=300;MH=240;MPW=MW*TS;MPH=MH*TS;GW=Math.ceil(MPW/CELL)+1;GH=Math.ceil(MPH/CELL)+1;grid=Array.from({length:GW*GH},()=>[]);
+ const seed=4242,r=mulberry(seed),N=MW*MH,bio=new Uint8Array(N),block=new Uint8Array(N).fill(1),hgt=new Uint8Array(N),path=new Uint8Array(N),gnd=new Uint8Array(N),wm=new Uint8Array(N),plank=new Uint8Array(N),deco=[];G.block=block;G.bio=bio;G.extHouses=[];G.noTree=[];G.hearts=[];G.bars=[];G.bases=[];G.keep=null;G.deco=deco;
  const I=(x,y)=>x+y*MW;
  const carve=(cx,cy,R,p,pw=2.2)=>{for(let y=Math.max(1,cy-R-3|0);y<=Math.min(MH-2,cy+R+3);y++)for(let x=Math.max(1,cx-R-3|0);x<=Math.min(MW-2,cx+R+3);x++){const n=fbm(x*.16,y*.16,seed%99,2)*(R<4?1:3)-(R<4?.5:1.5),d=Math.hypot(x-cx,y-cy);if(d<=R+n){const i=I(x,y);if(block[i]===3)plank[i]=1;block[i]=0;if(p&&d<=pw+n*.3)path[i]=1}}};
  const road=(pts,w=2.8)=>{for(let k=0;k<pts.length-1;k++){const [x0,y0]=pts[k],[x1,y1]=pts[k+1],L=Math.hypot(x1-x0,y1-y0);for(let s=0;s<=L;s+=1){const t=s/L;carve(x0+(x1-x0)*t,y0+(y1-y0)*t,w,1,1.6)}}};
@@ -2346,7 +2347,7 @@ function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Re
  carve(VC[0],VC[1],27,0);carve(42,56,22,0);carve(36,104,15,0);carve(90,62,10,0);carve(124,114,10,0);carve(150,18,11,0);carve(90,138,7,0);carve(62,132,8,0);
  for(let k=0;k<9;k++){const a=k/9*TAU;carve(132+Math.cos(a)*16,46+Math.sin(a)*12,13,0)}carve(132,46,16,0);
  // Fluss
- for(let x=2;x<MW-2;x++){const yc=78+Math.sin(x*.08)*3+Math.sin(x*.21)*1.2;for(let y=Math.floor(yc-2.4);y<=Math.ceil(yc+2.4);y++)if(Math.abs(y-yc)<=2.4)block[I(x,y)]=3}
+ for(let x=2;x<178;x++){const yc=78+Math.sin(x*.08)*3+Math.sin(x*.21)*1.2;for(let y=Math.floor(yc-2.4);y<=Math.ceil(yc+2.4);y++)if(Math.abs(y-yc)<=2.4)block[I(x,y)]=3}
  for(const [x,y,rx,ry] of [[62,132,5,3.5]])for(let yy=y-ry-1|0;yy<=y+ry+1;yy++)for(let xx=x-rx-1|0;xx<=x+rx+1;xx++)if(((xx-x)/rx)**2+((yy-y)/ry)**2<=1)block[I(xx,yy)]=3;
  // Wege
  road([[90,108],[90,88],[90,72],[90,62]]);road([[90,62],[66,58],[48,56]]);road([[90,62],[112,56],[128,48]]);road([[128,48],[142,32],[150,22]]);road([[94,112],[116,112],[124,114]]);road([[86,112],[64,112],[44,106]]);road([[90,116],[90,136]]);road([[84,128],[66,132]],2.2);
@@ -2380,9 +2381,10 @@ function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Re
  for(let k=-2;k<=2;k++)block[I(150+k,10)]=4;
  if(past)deco.push([sprOf('hoellenportal'),TX(150),TX(10)+4,0,3.2]);else deco.push([ZEIT,TX(150),TX(10)+4,0,1.9]);
  G.altar=[TX(149)+8,TX(18)+8];G.gate=[TX(150),TX(10)+4];
+ worldExt({carve,road,block,path,gnd,wm,hgt,plank,deco,I,r,bio,past});
  // Bäume
  const forestIn=(x,y)=>((x-132)/32)**2+((y-46)/24)**2<1;
- for(let y=2;y<MH-2;y++)for(let x=2;x<MW-2;x++){const i=I(x,y);if(block[i]||path[i]||gnd[i])continue;let nearPath=false;for(let dy=-2;dy<=2&&!nearPath;dy++)for(let dx=-2;dx<=2;dx++)if(path[I(x+dx,y+dy)]){nearPath=true;break}if(nearPath)continue;const f=forestIn(x,y),v=inV(x,y)<28,tr=f?.07:v?0:.006;if(r()<tr&&!CHESTS.some(c=>Math.abs(c[1]-x)<2&&Math.abs(c[2]-y)<2)&&Math.hypot(x-150,y-18)>12&&Math.hypot(x-124,y-114)>11){block[i]=4;const t=past&&(f||y<40)?'verkohlterbaum':f?(r()<.5?'tanne':r()<.15?'riesenbaum':'baum'):'baum';deco.push([sprOf(t),TX(x),TX(y),0,f?2+r()*.8:1.8+r()*.5])}}
+ for(let y=2;y<MH-2;y++)for(let x=2;x<MW-2;x++){const i=I(x,y);if(block[i]||path[i]||gnd[i])continue;let nearPath=false;for(let dy=-2;dy<=2&&!nearPath;dy++)for(let dx=-2;dx<=2;dx++)if(path[I(x+dx,y+dy)]){nearPath=true;break}if(nearPath)continue;const B=BIO[bio[i]],f=!B&&forestIn(x,y),v=!B&&inV(x,y)<28,tr=B?B.td:f?.07:v?0:.006;if(G.noTree.some(([a,b2,R])=>Math.hypot(x-a,y-b2)<R))continue;if(r()<tr&&!CHESTS.some(c=>Math.abs(c[1]-x)<2&&Math.abs(c[2]-y)<2)&&Math.hypot(x-150,y-18)>12&&Math.hypot(x-124,y-114)>11){block[i]=4;const t=B?B.trees[r()*B.trees.length|0]:past&&(f||y<40)?'verkohlterbaum':f?(r()<.5?'tanne':r()<.15?'riesenbaum':'baum'):'baum';deco.push([sprOf(t),TX(x),TX(y),0,B?1.7+r()*.7:f?2+r()*.8:1.8+r()*.5])}}
  // Höhen
  const dO=new Uint8Array(N).fill(99),qO=[];for(let i=0;i<N;i++)if(block[i]!==1){dO[i]=0;qO.push(i)}for(let h=0;h<qO.length;h++){const c=qO[h],x=c%MW,y=c/MW|0;if(dO[c]>=8)continue;for(const [dx,dy] of DIRS.slice(0,4)){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=MW||Y>=MH)continue;const n=X+Y*MW;if(dO[n]>dO[c]+1){dO[n]=dO[c]+1;qO.push(n)}}}
  for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y);if(block[i]!==1||wm[i])continue;hgt[i]=dO[i]>6?9:3+Math.floor(fbm(x*.13,y*.13,seed%77,3)*6)}
@@ -2391,16 +2393,16 @@ function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Re
  BW.clear();const tv=(t,x,y)=>tex(tileImg[t][(hash(x,y,7)*tileImg[t].length)|0]);
  const open=(x,y)=>x>=0&&y>=0&&x<MW&&y<MH&&block[I(x,y)]!==1&&block[I(x,y)]!==3;
  const hAt=(x,y)=>(x<0||y<0||x>=MW||y>=MH)?12:(block[I(x,y)]===1?hgt[I(x,y)]:0),liqT=past?T.LAVA:T.WATER,liqC=past?1.1:.9;
- const floorT=(i,x,y)=>plank[i]?tex(PLANK):gnd[i]===1?tex(SX.stone):gnd[i]===2?tex(SX.soil):gnd[i]===3?tv(T.HELL,x,y):path[i]?tv(past?T.ASH:st.p,x,y):tv(st.g,x,y);
+ const BG=i=>BIO[bio[i]],floorT=(i,x,y)=>plank[i]?tex(PLANK):gnd[i]===1?tex(SX.stone):gnd[i]===2?tex(SX.soil):gnd[i]===3?tv(T.HELL,x,y):gnd[i]===4?tex(SX.dark):path[i]?tv(past?T.ASH:BG(i)?BG(i).p:st.p,x,y):tv(BG(i)?BG(i).g:st.g,x,y);
  for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y),X=x*TS,Y=y*TS,b=block[i];
   if(b===0||b===4){let ao=1;for(const [dx,dy] of DIRS)if(!open(x+dx,y+dy))ao=.74;BW.quad([X,0,Y],[X+TS,0,Y],[X+TS,0,Y+TS],[X,0,Y+TS],floorT(i,x,y),ao,ao,ao,1);continue}
-  if(b===3){const q=tv(liqT,x,y);BW.quad([X,-3,Y],[X+TS,-3,Y],[X+TS,-3,Y+TS],[X,-3,Y+TS],q,liqC,liqC,liqC,1);for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){const nx=x+dx,ny=y+dy;if(nx<0||ny<0||nx>=MW||ny>=MH||block[I(nx,ny)]===3)continue;let p,q2;if(dx===1){p=[X+TS,Y+TS];q2=[X+TS,Y]}else if(dx===-1){p=[X,Y];q2=[X,Y+TS]}else if(dy===1){p=[X,Y+TS];q2=[X+TS,Y+TS]}else{p=[X+TS,Y];q2=[X,Y]}BW.quad([p[0],0,p[1]],[q2[0],0,q2[1]],[q2[0],-3,q2[1]],[p[0],-3,p[1]],tex(tileImg[st.w][0]),.5,.5,.5,1)}continue}
-  const H=hgt[i]*TS,m=wm[i];if(m!==1&&dO[i]<8){const top=m===2?tex(SX.logs):tv(st.g,x,y),k=.82;BW.quad([X,H,Y],[X+TS,H,Y],[X+TS,H,Y+TS],[X,H,Y+TS],top,k,k,k,1)}
-  for(const [dx,dy,sh] of [[1,0,.68],[-1,0,.8],[0,1,.6],[0,-1,.9]]){const nb=hAt(x+dx,y+dy)*TS;if(nb>=H)continue;if(m===1&&block[I(x+dx,y+dy)]===1&&wm[I(x+dx,y+dy)]===1)continue;for(let z=nb;z<H;z+=TS){const s=m===1?tex(SX.plaster):m===2?tex(SX.logs):tv(st.w,x+z,y),A=z+TS,b0=sh*(m?.82+.18*z/H:.62+.38*z/H),b1=sh*(m?.82+.18*A/H:.62+.38*A/H);
+  if(b===3){const lv=bio[i]===4,q=tv(lv?T.LAVA:liqT,x,y),lc=lv?1.15:bio[i]===2?.55:liqC;BW.quad([X,-3,Y],[X+TS,-3,Y],[X+TS,-3,Y+TS],[X,-3,Y+TS],q,lc,lc*(bio[i]===2?1.1:1),lc*(bio[i]===2?.8:1),1);for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){const nx=x+dx,ny=y+dy;if(nx<0||ny<0||nx>=MW||ny>=MH||block[I(nx,ny)]===3)continue;let p,q2;if(dx===1){p=[X+TS,Y+TS];q2=[X+TS,Y]}else if(dx===-1){p=[X,Y];q2=[X,Y+TS]}else if(dy===1){p=[X,Y+TS];q2=[X+TS,Y+TS]}else{p=[X+TS,Y];q2=[X,Y]}BW.quad([p[0],0,p[1]],[q2[0],0,q2[1]],[q2[0],-3,q2[1]],[p[0],-3,p[1]],tex(tileImg[BG(i)?BG(i).w:st.w][0]),.5,.5,.5,1)}continue}
+  const H=hgt[i]*TS,m=wm[i];if(m!==1&&dO[i]<8){const top=m===2?tex(SX.logs):m===3?tex(SX.dark):tv(BG(i)?BG(i).g:st.g,x,y),k=m===3?.6:.82;BW.quad([X,H,Y],[X+TS,H,Y],[X+TS,H,Y+TS],[X,H,Y+TS],top,k,k,k,1)}
+  for(const [dx,dy,sh] of [[1,0,.68],[-1,0,.8],[0,1,.6],[0,-1,.9]]){const nb=hAt(x+dx,y+dy)*TS;if(nb>=H)continue;if(m===1&&block[I(x+dx,y+dy)]===1&&wm[I(x+dx,y+dy)]===1)continue;for(let z=nb;z<H;z+=TS){const s=m===1?tex(SX.plaster):m===2?tex(SX.logs):m===3?tex(SX.dark):tv(BG(i)?BG(i).w:st.w,x+z,y),A=z+TS,b0=sh*(m?.82+.18*z/H:.62+.38*z/H),b1=sh*(m?.82+.18*A/H:.62+.38*A/H);
     let p,q;if(dx===1){p=[X+TS,Y+TS];q=[X+TS,Y]}else if(dx===-1){p=[X,Y];q=[X,Y+TS]}else if(dy===1){p=[X,Y+TS];q=[X+TS,Y+TS]}else{p=[X+TS,Y];q=[X,Y]}
     BW.quad([p[0],A,p[1]],[q[0],A,q[1]],[q[0],z,q[1]],[p[0],z,p[1]],s,b1,b1,b1,1,b0,b0,b0)}}}
  // Dächer, Türen, Fenster
- if(!past)for(const [x0,y0,w,h,rc] of HOUSES){const c=rgb(rc),H=4*TS,X0=x0*TS-4,X1=(x0+w)*TS+4,Y0=y0*TS-4,Y1=(y0+h)*TS+4,alongX=w>=h,span=alongX?(Y1-Y0):(X1-X0),Hr=H+span*.42,rt=tex(SX.roof);
+ if(!past)for(const [x0,y0,w,h,rc] of HOUSES.concat(G.extHouses)){const c=rgb(rc),H=4*TS,X0=x0*TS-4,X1=(x0+w)*TS+4,Y0=y0*TS-4,Y1=(y0+h)*TS+4,alongX=w>=h,span=alongX?(Y1-Y0):(X1-X0),Hr=H+span*.42,rt=tex(SX.roof);
   const slope=(a0,a1,b0,b1,sh)=>{const L=Math.hypot(b1-b0,Hr-H),n=Math.max(1,Math.round(L/TS)),m=Math.max(1,Math.round((a1-a0)/TS));for(let j=0;j<n;j++)for(let k=0;k<m;k++){const u0=j/n,u1=(j+1)/n,A0=a0+(a1-a0)*k/m,A1=a0+(a1-a0)*(k+1)/m,B0=b0+(b1-b0)*u0,B1=b0+(b1-b0)*u1,Z0=H+(Hr-H)*u0,Z1=H+(Hr-H)*u1,P=(a,b,z)=>alongX?[a,z,b]:[b,z,a];BW.quad(P(A0,B1,Z1),P(A1,B1,Z1),P(A1,B0,Z0),P(A0,B0,Z0),rt,c[0]*sh,c[1]*sh,c[2]*sh,1)}};
   if(alongX){const yc=(Y0+Y1)/2;slope(X0,X1,Y0,yc,.72);slope(X0,X1,Y1,yc,1);for(const X of [x0*TS,(x0+w)*TS])tri(BW,[X,H,Y0+4],[X,H,Y1-4],[X,Hr-2,yc],.86,.78,.6,1)}
   else{const xc=(X0+X1)/2;slope(Y0,Y1,X0,xc,.8);slope(Y0,Y1,X1,xc,.92);for(const Y of [y0*TS,(y0+h)*TS])tri(BW,[X0+4,H,Y],[X1-4,H,Y],[xc,Hr-2,Y],.86,.78,.6,1)}
@@ -2409,11 +2411,11 @@ function buildWorld(o){const past=!!o.past,st=G.st;G.layout={n:past?'Das alte Re
   const by=y0*TS-.4;BW.quad([dx0+7,46,by],[dx0-7,46,by],[dx0-7,32,by],[dx0+7,32,by],wt,.8,.8,.8,1)}
  const crossT=(spr,x,y,h,sc)=>{const t=tex(spr),w=spr.width*sc,H=spr.height*sc;for(const a of [.6,2.17]){const c=Math.cos(a)*w/2,s=Math.sin(a)*w/2;BW.quad([x-c,h+H,y-s],[x+c,h+H,y+s],[x+c,h,y+s],[x-c,h,y-s],t,1,1,1,1)}};
  for(const [s,x,y,h,sc] of deco)crossT(s,x,y,h,sc);
- for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y);if(block[i]!==1||wm[i])continue;let nr=false;for(let dy=-3;dy<=3&&!nr;dy++)for(let dx=-3;dx<=3;dx++)if(open(x+dx,y+dy)){nr=true;break}if(nr&&r()<.34){const t=past&&y<60?'verkohlterbaum':st.trees[r()*st.trees.length|0];crossT(sprOf(t),TX(x),TX(y),hgt[i]*TS,1.8+r()*.8)}}
- for(let k=0;k<(MW*MH/24|0);k++){const x=r()*MW|0,y=r()*MH|0,i=I(x,y);if(open(x,y)&&!block[i]&&!path[i]&&!gnd[i]&&inV(x,y)>7){const d=['grasbuschel','busch','grasbuschel'][r()*3|0];crossT(sprOf(d),x*TS+r()*16,y*TS+r()*16,0,.9)}}
+ for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y);if(block[i]!==1||wm[i])continue;let nr=false;for(let dy=-3;dy<=3&&!nr;dy++)for(let dx=-3;dx<=3;dx++)if(open(x+dx,y+dy)){nr=true;break}if(nr&&r()<.34){const B=BIO[bio[i]],t=B?B.trees[r()*B.trees.length|0]:past&&y<60?'verkohlterbaum':st.trees[r()*st.trees.length|0];crossT(sprOf(t),TX(x),TX(y),hgt[i]*TS,1.8+r()*.8)}}
+ for(let k=0;k<(MW*MH/24|0);k++){const x=r()*MW|0,y=r()*MH|0,i=I(x,y);if(open(x,y)&&!block[i]&&!path[i]&&!gnd[i]&&inV(x,y)>7&&!G.noTree.some(([a,b2,R])=>Math.hypot(x-a,y-b2)<R*.6)){const B=BIO[bio[i]];if(B&&!B.deco.length)continue;const d=B?B.deco[r()*B.deco.length|0]:['grasbuschel','busch','grasbuschel'][r()*3|0];crossT(sprOf(d),x*TS+r()*16,y*TS+r()*16,0,.9)}}
  BW.flush(true);
  setStoryTime(past?'past':'day');
- G.mm=mk(MW,MH,(px)=>{for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y),b=block[i];if(b===0)px(x,y,path[i]?'#d8c8a0':gnd[i]===2?'#9a7050':gnd[i]===1?'#a0a0a8':'#7ab06a');else if(b===4)px(x,y,'#3a7a3a');else if(b===3)px(x,y,past?'#c8481a':'#3f6f90');else if(wm[i]===1)px(x,y,'#c8584a');else if(wm[i]===2)px(x,y,'#8a5a34')}});
+ G.mm=mk(MW,MH,(px)=>{for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const i=I(x,y),b=block[i];if(b===0)px(x,y,path[i]?'#d8c8a0':gnd[i]===2?'#9a7050':gnd[i]===1?'#a0a0a8':gnd[i]===4?'#4a3a4a':BIO[bio[i]]?BIO[bio[i]].mm:'#7ab06a');else if(b===4)px(x,y,'#3a7a3a');else if(b===3)px(x,y,past||bio[i]===4?'#c8481a':bio[i]===2?'#3a5a4a':'#3f6f90');else if(wm[i]===1)px(x,y,'#c8584a');else if(wm[i]===2)px(x,y,'#8a5a34')}});
 }
 
 // ---------- NPCs ----------
@@ -2442,7 +2444,7 @@ function renderStory(vis){
  if(G.sealFx){const a=G.sealFx;arcFx(BA,G.altar[0],G.altar[1],1.5,20,30,G.time*2,G.time*2+TAU,rgb(a>1?'#ff3a4a':'#7ab4ff'),.55,28);if(a>1&&Math.random()<.4)burst(G.altar[0]+rand(-20,20),G.altar[1]+rand(-20,20),4,'#ff3a4a',1,40)}
  for(const c of chestsHere()){const x=TX(c[1]),y=TX(c[2]);if(!vis(x,y,30))continue;flat(BO,BLOB,x,y,.6,10,8);bill(BO,sprOf('schatztruhe'),x,y,0,24,20);if(Math.random()<.05)burst(x,y,14,'#ffd76b',1,20)}
  if(G.gateGlow>0){const [x,y]=G.gate,g=G.gateGlow*(.6+.4*Math.sin(G.time*5));wallFx(BA,x,y,26,10,92,rgb('#7ab4ff'),.22*g,24);arcFx(BA,x,y,1.4,0,40,0,TAU,rgb('#7ab4ff'),.25*g,24)}
- if(G.pillar){const p=G.pillar;wallFx(BA,p.x,p.y,p.r,0,400,rgb(p.col),p.a*(.7+.3*Math.sin(G.time*9)),24)}}
+ if(G.pillar){const p=G.pillar;wallFx(BA,p.x,p.y,p.r,0,400,rgb(p.col),p.a*(.7+.3*Math.sin(G.time*9)),24)}renderStory2(vis)}
 
 // ---------- Ablauf-Helfer ----------
 const until=p=>new Promise(res=>G.waits.push({p,res}));
@@ -2450,7 +2452,7 @@ const wait=s=>{const t=G.time+s;return until(()=>G.skip||G.time>=t)};
 function obj(t,x,y){G.obj=t;G.mark=x!=null?{x,y}:null}
 async function goTo(x,y,r,t){obj(t,x,y);await until(()=>dist(pl.x,pl.y,x,y)<r);G.mark=null}
 function storyWaits(){if(!G.waits.length)return;const w=G.waits;G.waits=[];for(const q of w){let ok=false;try{ok=q.p()}catch(e){ok=true}if(ok)q.res();else G.waits.push(q)}}
-function portOf(who){if(who==='???')return DARKPORT;const n=G.npcs.find(q=>q.n===who);if(n)return n.port;for(const id in NPC_DEF)if(NPC_DEF[id].n===who)return npcFrames(id).port;const h=HEROES.find(x=>x.n===who);if(h)return h.port||mk(12,12,(p,r,g)=>g.drawImage(h.f[0],4,6,12,12,0,0,12,12));return null}
+function portOf(who){if(who==='???'||who==='Morvath')return DARKPORT;const n=G.npcs.find(q=>q.n===who);if(n)return n.port;for(const id in NPC_DEF)if(NPC_DEF[id].n===who)return npcFrames(id).port;const h=HEROES.find(x=>x.n===who);if(h){if(h.port)return h.port;if(h.f)return mk(12,12,(p,r,g)=>g.drawImage(h.f[0],4,6,12,12,0,0,12,12));try{const c=HF(h.id);return mk(32,32,(p,r,g)=>{g.imageSmoothingEnabled=false;const s=Math.max(32/c.width,40/c.height);g.drawImage(c,16-c.width*s/2,2,c.width*s,c.height*s)})}catch(e){return null}}return null}
 function guardP(){try{fsGuard=performance.now()+600}catch(e){}}
 function dlg(lines){guardP();if(G.skip&&G.cutOn)return Promise.resolve();return new Promise(res=>{const own=state==='play';if(own){state='cut';G.dOwn=true;unlockMouse();for(const k in keys)keys[k]=false;btn.l=btn.r=false}G.dq=lines.map(l=>({who:l[0],text:l[1]}));G.line=null;G.dres=()=>{if(G.dOwn){G.dOwn=false;state='play';guardP();lockMouse()}res()};nextLine()})}
 function nextLine(){if(!G.dq.length){G.line=null;const r=G.dres;G.dres=null;if(r)r();return}const l=G.dq.shift();G.line={...l,n:0,port:portOf(l.who)};beep(660,.03,'triangle',.02)}
@@ -2509,16 +2511,16 @@ const MISSIONS=[
  {n:'Die Nacht des roten Mondes',hero:'held',giver:'bruno'},
 ];
 const SVS=()=>SV.story||(SV.story={m:0});
-function storyGame(past,heroId){startGame(past?PAST_ST:STORY_ST,heroId,false,{story:{past}});Object.assign(G,{story:true,past:!!past,npcs:[],waits:[],obj:null,mark:null,hint:null,fade:0,lbox:0,cnt:{l:0,h:0,d:0,u:0},mi:null,free:false,wild:[]});G.msg=[];G.ban=null;G.cmdLeft=0;if(heroId!=='urheld')applyGear(heroId);
+function storyGame(past,heroId){startGame(past?PAST_ST:STORY_ST,heroId,false,{story:{past}});Object.assign(G,{story:true,past:!!past,npcs:[],waits:[],obj:null,mark:null,hint:null,fade:0,lbox:0,cnt:{l:0,h:0,d:0,u:0},mi:null,free:false,wild:[]});G.msg=[];G.ban=null;G.cmdLeft=0;if(heroId==='held'||heroId==='mira_s')applyGear(heroId);
  const ag=$('b-again');if(!ag._st){ag._st=1;const o=ag.onclick;ag.onclick=()=>G&&G.story?storyRetry():o()}}
 function placeVillage(){for(const [id,x,y,w,lines] of [['mira',95,111,0,[['Mira','Ich habe Tränke, Kram und Gerüchte. Heute leider nur Gerüchte.'],['Mira','Die Monster benehmen sich seltsam. Sie greifen sogar am Tag an.']]],['bruno',98,104,14,[['Ältester Bruno','Unser Dorf steht seit tausend Jahren. Ich hoffe, das bleibt so.']]],['hilde',70,112,10,[['Bäuerin Hilde','Ohne meine Felder hätte das Dorf nichts zu essen.']]],['kalle',101,123,8,[['Schmied Kalle','Brauchst du bessere Ausrüstung? Schau dir an, was ich geschmiedet habe.']]],['tom',90,90,6,[['Wache Tom','Am Nordtor ist alles ruhig. Noch.']]],['rosa',76,124,8,[['Oma Rosa','Früher hat man sich Geschichten über den Schrein im Wald erzählt. Heute glaubt niemand mehr daran.']]],['pip',86,116,40,[['Pip','Fang mich doch! … Ach, du hast keine Zeit? Schade.'],['Pip','Ich will auch mal ein Held werden!']]],['lu',62,127,6,[['Fischer Lu','Seit ein paar Tagen beißen die Fische nicht mehr. Irgendwas stimmt nicht.']]]]){const n=addNPC(id,x,y,{wander:w});n.lines=lines;n.talk=()=>{const l=n.lines[n.li++%n.lines.length];return dlg([l]).then(()=>{if(id==='kalle'&&pl.h.id==='held')openInv(true)})}}}
 function heroHome(){pl.x=TX(79);pl.y=TX(109)+4;CAM.yaw=-Math.PI/2}
-function startStory(){audio();const m=SVS().m||0;if(m===0)return runMission(0,true);if(m===1)return runMission(1,true);storyGame(false,'held');placeVillage();heroHome();setupFree()}
-function setupFree(){G.mi=null;G.mname=null;G.free=true;const m=SVS().m;for(const n of G.npcs)n.mark=false;const M=MISSIONS[m];if(M&&M.giver){const n=NPCm(M.giver);if(n){n.mark=true;const old=n.talk;n.talk=()=>{n.mark=false;n.talk=old;runMission(m,false)};obj(`Neue Mission: Sprich mit ${n.n}`,n.x,n.y);G.markN=n}}else obj(m>=MISSIONS.length?'Kapitel 1 abgeschlossen · Erkunde Wiesental':'Erkunde Wiesental')}
+function startStory(){audio();const m=SVS().m||0;if(m===0)return runMission(0,true);if(m===1)return runMission(1,true);const M=MISSIONS[m];if(M&&(M.cont||M.auto))return runMission(m,true);storyGame(false,'held');placeVillage();placeRegions();heroHome();const hm=M&&M.home||(m>=MISSIONS.length?null:null);if(hm){pl.x=TX(hm[0]);pl.y=TX(hm[1])}setupFree()}
+function setupFree(){G.mi=null;G.mname=null;G.free=true;G.atM=null;const m=SVS().m;for(const n of G.npcs)n.mark=false;const M=MISSIONS[m];if(M&&M.at){G.atM={m,x:TX(M.at[0]),y:TX(M.at[1])};obj(M.at[2]||`Neue Mission: ${M.n}`,G.atM.x,G.atM.y);return}if(M&&M.giver&&NPCm(M.giver)){const n=NPCm(M.giver);if(n){n.mark=true;const old=n.talk;n.talk=()=>{n.mark=false;n.talk=old;runMission(m,false)};obj(`Neue Mission: Sprich mit ${n.n}`,n.x,n.y);G.markN=n}}else obj(m>=MISSIONS.length?'Die Heldengeschichte ist abgeschlossen · Erkunde die Welt':'Erkunde die Welt')}
 function done(i,gold){const S=SVS();S.m=Math.max(S.m,i+1);SV.gold+=gold;persist();SND.cap();banner('MISSION ERFÜLLT',`${MISSIONS[i].n}   +${gold} Münzen`,'#ffd76b');G.hint=null;G.markN=null;setupFree()}
 function storyRetry(){runMission(G.mi??SVS().m,true)}
-function storyFail(){if(G.mi==null){fadeTo(1,.5).then(()=>{pl.dead=false;pl.hp=pl.maxHp;pl.x=TX(90);pl.y=TX(114);G.slow=0;pl.inv=2;fadeTo(0,.6);say('Mira','Puh, du bist zu Hause aufgewacht. Pass draußen besser auf!')});return}G.over=true;state='end';unlockMouse();$('e-t').textContent='Du wurdest besiegt';$('e-r').textContent='';$('e-s').innerHTML=`<span>Mission</span><span>${MISSIONS[G.mi].n}</span>`;$('b-next').classList.add('hidden');$('b-again').textContent='Mission neu starten';setTimeout(()=>{if(state==='end')showScr('scr-end')},300)}
-function runMission(i,fresh){const M=MISSIONS[i];$('b-again').textContent='Nochmal';if(fresh){storyGame(!!M.past,M.hero);if(!M.past)placeVillage()}G.mi=i;G.free=false;G.mname=M.n;G.markN=null;G.obj=null;for(const n of G.npcs)n.mark=false;banner(i===0?'PROLOG':'MISSION',M.n,'#ffd76b');const fn=SCRIPTS[i];fn(fresh).catch(e=>console.error(e))}
+function storyFail(){if(G.mi==null){fadeTo(1,.5).then(()=>{pl.dead=false;pl.hp=pl.maxHp;const hm=respawnAt();pl.x=TX(hm[0]);pl.y=TX(hm[1]);G.slow=0;pl.inv=2;fadeTo(0,.6);say('Mira','Puh, du bist zu Hause aufgewacht. Pass draußen besser auf!')});return}G.over=true;state='end';unlockMouse();$('e-t').textContent='Du wurdest besiegt';$('e-r').textContent='';$('e-s').innerHTML=`<span>Mission</span><span>${MISSIONS[G.mi].n}</span>`;$('b-next').classList.add('hidden');$('b-again').textContent='Mission neu starten';setTimeout(()=>{if(state==='end')showScr('scr-end')},300)}
+function runMission(i,fresh){const M=MISSIONS[i];$('b-again').textContent='Nochmal';if(fresh){storyGame(!!M.past,M.hero);if(!M.past){placeVillage();placeRegions()}if(M.home&&!M.past){pl.x=TX(M.home[0]);pl.y=TX(M.home[1])}}G.mi=i;G.free=false;G.mname=M.n;G.markN=null;G.obj=null;for(const n of G.npcs)n.mark=false;banner(i===0?'PROLOG':M.ch?'TEIL '+M.ch:'MISSION',M.n,'#ffd76b');const fn=SCRIPTS[i];(async()=>{if(M.ch&&(!MISSIONS[i-1]||MISSIONS[i-1].ch!==M.ch)&&!M.noCard)await comic([{a:M.card||'teil',t:CH_N[M.ch]||'',big:'TEIL '+M.ch}]);await fn(fresh)})().catch(e=>console.error(e))}
 function tutStep(text,cond){hint(text);return until(cond).then(()=>{G.hint=null})}
 
 // ---------- Die Skripte ----------
@@ -2632,7 +2634,7 @@ const SCRIPTS=[
   applyGear('held');pl.hp=pl.maxHp;setStoryTime('day');for(const n of G.npcs){n.hide=false}placeAt();G.sealFx=2;
   await cut(async()=>{G.fade=1;pl.x=TX(90);pl.y=TX(98);mira.x=TX(92);mira.y=TX(101);bruno.x=TX(88);bruno.y=TX(101);camShot(TX(90),TX(100),-Math.PI/2,100,40,20,0);await fadeTo(0,1);faceTo(mira,pl.x,pl.y);faceTo(bruno,pl.x,pl.y);G.plDir=Math.PI/2;faceTo(mira,pl.x,pl.y);faceTo(bruno,pl.x,pl.y);
    await dlg([['Mira','Du lebst! Wir haben das Dorf gehalten … aber du siehst aus, als hättest du einen Geist gesehen.'],['Ältester Bruno','Du kamst zu spät, nicht wahr? Das Siegel ist gebrochen.'],['Ältester Bruno','Die Legende wiederholt sich. Irgendwo da draußen ist jetzt ein neuer Dämonenkönig.'],['Mira','Dann halten wir ihn eben auf. Und das Tor im Schrein … „der Weg durch die Zeit“.'],['Mira','Vielleicht kann uns die Vergangenheit zeigen, wie man ihn besiegt.'],['Ältester Bruno','Ruht euch aus. Euch beiden steht eine lange Reise bevor.'],['Ältester Bruno','Und nimm diese Klinge. Sie liegt seit Generationen in meinem Haus. Man sagt, sie gehörte einst dem ersten Helden.']])});
-  giveItem('held','heldenklinge');await comic([{a:'tor',t:'Das Tor im Schrein schweigt. Noch.'},{a:'ende',t:'Fortsetzung folgt …',big:'ENDE VON KAPITEL 1'}]);
+  giveItem('held','heldenklinge');await comic([{a:'tor',t:'Das Tor im Schrein schweigt. Noch.'},{a:'ende',t:'Fortsetzung folgt …',big:'ENDE VON TEIL 1'}]);
   done(4,500)},
 ];
 function placeAt(){for(const [id,x,y] of [['mira',95,111],['bruno',98,104],['hilde',70,112],['kalle',101,123],['tom',90,90],['rosa',76,124],['pip',86,116],['lu',62,127]]){const n=NPCm(id);if(n){n.x=n.hx=TX(x);n.y=n.hy=TX(y)}}}
@@ -2641,9 +2643,9 @@ function placeAt(){for(const [id,x,y] of [['mira',95,111],['bruno',98,104],['hil
 function storyTick(dt){for(const n of G.npcs)updNPC(n,dt);for(const n of G.npcs){if(n.hide)continue;const d=dist(n.x,n.y,pl.x,pl.y);if(d<13&&d>.1){const k=(13-d)/d;pl.x+=(pl.x-n.x)*k*.5;pl.y+=(pl.y-n.y)*k*.5}}
  if(G.markN&&!G.markN.hide&&G.free)G.mark={x:G.markN.x,y:G.markN.y};
  if(G.free){pl.hp=Math.min(pl.maxHp,pl.hp+pl.maxHp*.03*dt);G.wildT=(G.wildT||0)-dt;if(G.wildT<=0&&SVS().m>=2){G.wildT=3;G.wild=G.wild.filter(u=>!u.dead);const zones=[[42,56,22,['gruen','gruen','pink']],[132,46,26,['blatt','biene','kaefer','pilzling']],[36,104,14,['gruen','pink','blatt']]];for(const [x,y,R,k] of zones){if(dist(pl.x,pl.y,TX(x),TX(y))>TX(R+16)||G.wild.length>=16)continue;const a=Math.random()*TAU,d=Math.random()*R*TS,X=TX(x)+Math.cos(a)*d,Y=TX(y)+Math.sin(a)*d;if(solid(X,Y)||dist(X,Y,pl.x,pl.y)<160)continue;G.wild.push(...horde(k,3,X,Y,30))}}}
- storyWaits()}
+ storyTick2(dt);storyWaits()}
 function nearTalk(){let best=null,bd=40;for(const n of G.npcs){if(n.hide||!n.talk)continue;const d=dist(n.x,n.y,pl.x,pl.y);if(d<bd){bd=d;best=n}}return best}
-function storyTalk(){if(pl.dead)return;const ch=nearChest();if(ch){openChest(ch);return}const n=nearTalk();if(!n)return;faceTo(n,pl.x,pl.y);n.look=null;n.wp=null;n.talk()}
+function storyTalk(){if(pl.dead)return;const pk=nearPick();if(pk){takePick(pk);return}const ch=nearChest();if(ch){openChest(ch);return}const n=nearTalk();if(!n)return;faceTo(n,pl.x,pl.y);n.look=null;n.wp=null;n.talk()}
 
 // ---------- HUD ----------
 function wrapT(t,w,sz){hc.font=F(sz,false);const out=[];let line='';for(const word of t.split(' ')){const tr=line?line+' '+word:word;if(hc.measureText(tr).width>w&&line){out.push(line);line=word}else line=tr}if(line)out.push(line);return out}
@@ -2660,7 +2662,7 @@ function storyHUD0(){const s=HS,W=SW,H=SH;if(G.night>0){hc.fillStyle=`rgba(${G.n
 function storyHUD1(){const s=HS,W=SW,H=SH;
  if(G.mname)tx(G.mname,W/2,26*s,15,'#cdb6e6','center',false);if(G.obj)tx(G.obj,W/2,50*s,19,'#ffd76b','center');
  if(G.hint){const w=Math.min(760*s,W-40*s),y=H*.72;hc.fillStyle='rgba(22,12,32,.85)';hc.fillRect(W/2-w/2,y-26*s,w,40*s);hc.strokeStyle='#ffd76b';hc.lineWidth=2*s;hc.strokeRect(W/2-w/2,y-26*s,w,40*s);tx(G.hint,W/2,y,17,'#fff0c0','center')}
- const ch=nearChest(),n=nearTalk();if(ch&&!pl.dead)tx('E  Truhe öffnen',W/2,H*.8,22,'#ffd76b','center');else if(n&&!pl.dead)tx(`E  Mit ${n.n} sprechen`,W/2,H*.8,22,'#ffd76b','center');if(!G.past&&pl.h.id!=='urheld')tx('I  Ausrüstung',16*s,H-16*s,14,'#cdb6e6','left',false);
+ const ch=nearChest(),n=nearTalk(),pk=nearPick();if(pk&&!pl.dead)tx('E  '+pk.label,W/2,H*.8,22,'#ffd76b','center');else if(ch&&!pl.dead)tx('E  Truhe öffnen',W/2,H*.8,22,'#ffd76b','center');else if(n&&!pl.dead)tx(`E  Mit ${n.n} sprechen`,W/2,H*.8,22,'#ffd76b','center');if(!G.past&&(pl.h.id==='held'||pl.h.id==='mira_s'))tx('I  Ausrüstung',16*s,H-16*s,14,'#cdb6e6','left',false);
  if(G.mark){const m=G.mark,p=project(m.x,m.y,46+Math.sin(G.time*4)*4),d=Math.round(dist(pl.x,pl.y,m.x,m.y)/TS);if(p&&p.x>0&&p.x<W&&p.y>0&&p.y<H){hc.fillStyle='#160c20';hc.beginPath();hc.moveTo(p.x,p.y-14*s);hc.lineTo(p.x+11*s,p.y);hc.lineTo(p.x,p.y+14*s);hc.lineTo(p.x-11*s,p.y);hc.fill();hc.fillStyle='#ffd76b';hc.beginPath();hc.moveTo(p.x,p.y-10*s);hc.lineTo(p.x+7*s,p.y);hc.lineTo(p.x,p.y+10*s);hc.lineTo(p.x-7*s,p.y);hc.fill();tx(`${d} m`,p.x,p.y+32*s,14,'#ffd76b','center')}else{const a=Math.atan2(m.y-pl.y,m.x-pl.x)-CAM.yaw,cx=W/2+Math.sin(a)*Math.min(W,H)*.36,cy=H/2-Math.cos(a)*Math.min(W,H)*.36;hc.save();hc.translate(cx,cy);hc.rotate(a);hc.fillStyle='#ffd76b';hc.beginPath();hc.moveTo(0,-16*s);hc.lineTo(11*s,6*s);hc.lineTo(-11*s,6*s);hc.fill();hc.restore();tx(`${d} m`,cx,cy+26*s,14,'#ffd76b','center')}
   const ms=Math.min(231/MW,168/MH)*s,mx=W-MW*ms-16*s,my=16*s;hc.fillStyle='#ffd76b';hc.fillRect(mx+m.x/TS*ms-4*s,my+m.y/TS*ms-4*s,8*s,8*s)}
  {const ms=Math.min(231/MW,168/MH)*s,mx=W-MW*ms-16*s,my=16*s;for(const c of chestsHere()){hc.fillStyle='#e8a040';hc.fillRect(mx+TX(c[1])/TS*ms-2*s,my+TX(c[2])/TS*ms-2*s,4*s,4*s)}for(const q of G.npcs){if(q.hide)continue;hc.fillStyle=q.mark?'#ffd76b':'#ff9fd0';hc.fillRect(mx+q.x/TS*ms-1.5*s,my+q.y/TS*ms-1.5*s,3*s,3*s)}}}
@@ -2729,7 +2731,7 @@ function openChest(c){SVS().opened[c[0]]=1;burst(TX(c[1]),TX(c[2]),10,'#ffd76b',
 let invShop=false;
 function statTxt(it){const p=[];if(it.atk)p.push(`+${Math.round(it.atk*100)} % Angriff`);if(it.hp)p.push(`+${Math.round(it.hp*100)} % Leben`);if(it.def)p.push(`-${Math.round(it.def*100)} % Schaden`);if(it.spd)p.push(`+${Math.round(it.spd*100)} % Tempo`);return p.join(' · ')||'Keine Boni'}
 function itemDesc(it){if(it.slot==='wpn')return (it.c==='mira_s'?STAFF_N[it.t]:WTYPES[it.t].d)+'<br>'+statTxt(it);return statTxt(it)}
-function openInv(shop){if(!G||!G.story||state!=='play')return;if(G.past||pl.h.id==='urheld'){say('Seherin Mirabel','Der erste Held braucht keine andere Ausrüstung.');return}invShop=!!shop;state='inv';unlockMouse();renderInv();showScr('scr-inv')}
+function openInv(shop){if(!G||!G.story||state!=='play')return;if(G.past||pl.h.id==='urheld'){say('Seherin Mirabel','Der erste Held braucht keine andere Ausrüstung.');return}if(pl.h.id!=='held'&&pl.h.id!=='mira_s'){say(pl.h.n,'Ich kämpfe mit dem, was ich habe.');return}invShop=!!shop;state='inv';unlockMouse();renderInv();showScr('scr-inv')}
 function closeInv(){if(state!=='inv')return;state='play';showScr(null);guardP();lockMouse()}
 function renderInv(){const c=pl.h.id,inv=invOf(c),box=$('inv-l');$('inv-t').textContent=invShop?'Kalles Schmiede':`Ausrüstung · ${pl.h.n}`;const h=gearHero(c);$('inv-s').innerHTML=`Leben ${h.hp} &nbsp;·&nbsp; Angriff ${Math.round(h.atk*100)} &nbsp;·&nbsp; Tempo ${Math.round(h.spd)} &nbsp;·&nbsp; Schutz ${Math.round(h.def*100)} % &nbsp;·&nbsp; ${SV.gold} Münzen`;box.innerHTML='';
  const list=invShop?Object.keys(SI).filter(k=>SI[k].c===c&&SI[k].price):inv.items;
@@ -2741,6 +2743,441 @@ function renderInv(){const c=pl.h.id,inv=invOf(c),box=$('inv-l');$('inv-t').text
    if(invShop){b.disabled=own||SV.gold<it.price;b.onclick=()=>{if(SV.gold<it.price||own)return;SV.gold-=it.price;giveItem(c,k,true);SND.cap();renderInv()}}
    else b.onclick=()=>{if(sl!=='wpn'&&on)delete inv.eq[sl];else inv.eq[sl]=k;persist();applyGear(c);SND.cap();renderInv()};
    row.appendChild(b)}box.appendChild(row)}}
+
+// =====================================================================
+// HELDENGESCHICHTE · Teile 2–10 (Welt, Figuren, Missionen)
+// =====================================================================
+const CH_N={1:'Der rote Mond',2:'Die vier Herzen',3:'Das Sandmeer',4:'Der Nebelsumpf',5:'Der Frostkamm',6:'Die Nacht der Schatten',7:'Das Tor der Zeit',8:'Das Aschenland',9:'Sturm auf die Schattenfeste',10:'Der Dämonenkönig'};
+const BIO=[null,
+ {n:'Sandmeer',g:T.DESERT,p:T.BEACH,w:T.DESERT,trees:['palme','kaktus','palme','kaktus'],td:.005,deco:[],fog:'#f2d8a8',mm:'#e0c890',mobs:['sand','skorpion','skorpion','kaefer']},
+ {n:'Nebelsumpf',g:T.SWAMP,p:T.MUD,w:T.JUNGLE,trees:['sumpfbaum','sumpfbaum','riesenpilz','schilfrohr'],td:.04,deco:['schilfrohr','pilz','sumpfkraut'],fog:'#7a9a88',mm:'#4a6a4a',mobs:['frosch','moorgeist','blatt','pilzling']},
+ {n:'Frostkamm',g:T.SNOW,p:T.MOUNTAIN,w:T.ICEC,trees:['tanne','tanne','eiskristall'],td:.028,deco:['frostkraut'],fog:'#dce8f6',mm:'#e8f0f8',mobs:['frost','schneewolf','eisgeist','schneewolf']},
+ {n:'Aschenland',g:T.ASH,p:T.OBSP,w:T.HELLB,trees:['verkohlterbaum','obsidianfels','hoellensaeule'],td:.012,deco:['knochenhaufen','hoellendorn'],fog:'#5a2620',mm:'#5a3a3a',mobs:['imp','hoellenhund','magma','lavafledermaus']}];
+const BAR_OPEN_M=24;// ab dieser Mission ist die Barriere im Norden offen
+// ---------- Welt-Erweiterung ----------
+function worldExt(c){const {carve,road,block,path,gnd,wm,hgt,deco,I,r,bio,past}=c;
+ for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){let b=0;if(y<150&&x>=180)b=(x>=228&&y<66)?4:1;else if(y>=150)b=x<175?2:3;bio[I(x,y)]=b}
+ if(past)return;
+ const house=(x0,y0,w,h,col)=>{for(let y=y0;y<y0+h;y++)for(let x=x0;x<x0+w;x++){const i=I(x,y);block[i]=1;wm[i]=1;hgt[i]=4;path[i]=0}G.extHouses.push([x0,y0,w,h,col])};
+ const solidD=(spr,x,y,sc,w=1,h=1)=>{for(let j=0;j<h;j++)for(let k=0;k<w;k++)block[I(x+k,y+j)]=4;deco.push([spr,x*TS+w*8,y*TS+h*8,0,sc])};
+ const pool=(x,y,rx,ry)=>{for(let yy=Math.floor(y-ry-1);yy<=y+ry+1;yy++)for(let xx=Math.floor(x-rx-1);xx<=x+rx+1;xx++)if(((xx-x)/rx)**2+((yy-y)/ry)**2<=1&&!path[I(xx,yy)])block[I(xx,yy)]=3};
+ const ring=(x,y,R,spr,n,sc=1.6)=>{for(let k=0;k<n;k++){const a=k/n*TAU+.3,X=Math.round(x+Math.cos(a)*R),Y=Math.round(y+Math.sin(a)*R*.85);solidD(sprOf(spr),X,Y,sc)}};
+ const stoneFloor=(x,y,R,k=1)=>{for(let yy=y-R;yy<=y+R;yy++)for(let xx=x-R;xx<=x+R;xx++)if(Math.hypot(xx-x,yy-y)<=R&&!block[I(xx,yy)])gnd[I(xx,yy)]=k};
+ const torch=(x,y,s='fackel')=>deco.push([sprOf(s),TX(x),TX(y),0,1.5]);
+ const palisade=(cx,cy,R)=>{for(let y=cy-R-2;y<=cy+R+2;y++)for(let x=cx-R-2;x<=cx+R+2;x++){const d=Math.hypot(x-cx,y-cy);if(d<R-.6||d>R+.7)continue;if(Math.abs(x-cx)<=2.5||Math.abs(y-cy)<=2.5)continue;const i=I(x,y);if(block[i]===3)continue;block[i]=1;wm[i]=2;hgt[i]=2}};
+ // --- Pass nach Osten & Sandmeer ---
+ road([[126,114],[142,117],[160,115],[178,112],[196,110],[208,108]],2.6);
+ carve(222,108,17,0);for(const k of [[196,110,6],[176,112,5],[158,115,5]])carve(k[0],k[1],k[2],0);
+ pool(222,111,4.5,3);G.noTree.push([222,108,16]);
+ for(const h of [[205,97,5,4,'#d8a060'],[228,94,6,4,'#c8784a'],[205,116,5,4,'#b8905a'],[230,117,6,5,'#d89a5a'],[214,93,4,4,'#c8a070']])house(...h);
+ solidD(STALL,215,103,1.3,2,1);solidD(STALL,227,104,1.3,2,1);for(const [x,y] of [[217,108],[227,108],[222,105],[222,116]])deco.push([sprOf('palme'),TX(x),TX(y),0,2.2]);for(const [x,y] of [[212,108],[232,108],[222,99],[222,122]])torch(x,y);
+ road([[222,108],[236,100],[250,90]],2.4);carve(250,90,22,0);carve(236,78,10,0);carve(264,100,11,0);
+ road([[250,90],[266,108],[276,120]],2.2);carve(276,128,12,0);stoneFloor(276,128,7);ring(276,128,8,'statue',8,1.7);solidD(sprOf('runenstein'),276,124,1.9);G.hearts.push({id:'sand',x:TX(276)+8,y:TX(124)+8,col:'#ffd23a'});
+ // --- Pass nach Norden & Aschenland ---
+ road([[250,90],[253,76],[256,66],[258,54]],2.4);G.bars.push({x0:248,x1:264,y:66});
+ carve(258,44,16,0);carve(240,32,11,0);carve(276,36,9,0);pool(246,46,4,3);pool(266,54,3,2);pool(283,42,3,2.5);
+ road([[258,44],[268,36],[276,30]],2.4);
+ // Schattenfeste
+ for(let y=3;y<=28;y++)for(let x=262;x<=292;x++){const i=I(x,y);block[i]=0;path[i]=0;gnd[i]=4}
+ const wall=(x,y,h=7)=>{const i=I(x,y);block[i]=1;wm[i]=3;hgt[i]=h;gnd[i]=0};
+ for(let x=262;x<=292;x++){wall(x,3,8);if(x<274||x>278)wall(x,28,8)}for(let y=3;y<=28;y++){wall(262,y,8);wall(292,y,8)}
+ for(let x=268;x<=284;x++){wall(x,5,7);if(x<274||x>278)wall(x,15,2)}for(let y=6;y<=15;y++){wall(268,y,2);wall(284,y,2)}
+ for(const [x,y] of [[263,4],[291,4],[263,27],[291,27]])for(let j=0;j<2;j++)for(let k=0;k<2;k++)wall(x+k-(x>270?1:0),y+j-(y>10?1:0),11);
+ deco.push([sprOf('thron'),TX(276)+8,TX(7)+8,0,2.2]);for(const [x,y] of [[270,9],[282,9],[270,13],[282,13],[272,26],[280,26],[265,18],[289,18]])deco.push([sprOf('seelenlaterne'),TX(x),TX(y),0,1.6]);
+ for(const [x,y] of [[266,10],[288,10],[266,22],[288,22]])deco.push([SPR.banner_rot,TX(x),TX(y),0,2]);
+ G.hearts.push({id:'glut',x:TX(240),y:TX(32),col:'#ff5a2a'});G.fort={x:TX(276)+8,y:TX(10)};
+ // --- Nebelsumpf ---
+ road([[90,136],[90,150],[84,164],[70,176],[62,182]],2.6);carve(62,182,14,0);G.noTree.push([62,182,13]);
+ for(const h of [[51,172,5,4,'#7a5a3a'],[66,170,5,4,'#6a6a3a'],[49,186,5,4,'#7a6a4a'],[70,188,6,4,'#5a7a5a']])house(...h);
+ pool(44,180,2.5,3.5);pool(78,178,2.5,2.5);for(const [x,y] of [[58,180],[66,184],[62,176]])torch(x,y,'pilzlampe');
+ road([[62,182],[50,198],[40,210]],2.2);carve(38,212,16,0);pool(28,206,4,3);pool(46,222,5,3);pool(26,222,3,3);
+ road([[62,182],[80,194],[98,200],[112,206]],2.4);carve(112,206,15,0);pool(125,197,3,2);pool(99,215,3,2);
+ road([[112,206],[128,214],[140,220]],2.2);carve(140,222,8,0);stoneFloor(140,222,5);ring(140,222,6,'runenstein',6,1.5);G.hearts.push({id:'moor',x:TX(140)+8,y:TX(222),col:'#5aff8a'});
+ // --- Frostkamm ---
+ road([[140,222],[158,216],[176,206],[196,196],[206,190]],2.4);road([[230,118],[232,134],[228,150],[222,166],[216,178]],2.4);
+ carve(215,188,15,0);palisade(215,188,13);G.noTree.push([215,188,13]);
+ for(const h of [[205,180,5,4,'#6a7a9a'],[220,178,6,4,'#5a6a8a'],[206,194,5,4,'#7a8aa8'],[222,195,5,4,'#6a7a9a']])house(...h);
+ for(const [x,y] of [[212,186],[218,190],[215,182]])torch(x,y);deco.push([sprOf('lagerfeuer'),TX(215),TX(189),0,1.5]);
+ road([[228,190],[244,198],[258,206],[270,212]],2.6);carve(270,212,15,0);pool(240,216,4,2.5);
+ road([[270,212],[282,222],[288,226]],2.2);carve(288,226,7,0);stoneFloor(288,226,4);ring(288,226,5,'eiskristall',6,1.5);G.hearts.push({id:'frost',x:TX(288)+8,y:TX(226),col:'#8fe2ff'});
+ // Barriere geschlossen?
+ const open=(SVS().m||0)>=BAR_OPEN_M;for(const b of G.bars){b.open=open;if(!open)for(let x=b.x0;x<=b.x1;x++)for(let y=b.y-1;y<=b.y;y++){const i=I(x,y);if(block[i]===0)block[i]=4}}}
+function openBarrier(){for(const b of G.bars){if(b.open)continue;b.open=true;for(let x=b.x0;x<=b.x1;x++)for(let y=b.y-1;y<=b.y;y++){const i=x+y*MW;if(G.block[i]===4)G.block[i]=0}}}
+// ---------- Figuren der neuen Gebiete ----------
+Object.assign(NPC_DEF,{
+ amara:{n:'Sultanin Amara',look:{race:'mensch',hair:'#1a1a2a',outfit:'#e8b830',style:1},eq:{kopf:{id:'wuestenhelm'}}},
+ hassan:{n:'Händler Hassan',look:{race:'mensch',hair:'#3a2a1a',outfit:'#c8584a',style:2}},
+ ulla:{n:'Unke Ulla',look:{race:'kobold',hair:'#6aa84a',outfit:'#5a7a3a',style:1}},
+ moos:{n:'Kräuterfrau Moos',look:{race:'elf',hair:'#8ad0a0',outfit:'#4a6a5a',style:1}},
+ bjarne:{n:'Jarl Bjarne',look:{race:'zwerg',hair:'#d8a050',outfit:'#5a6a9a',style:0},eq:{kopf:{id:'fellhelm'},brust:{id:'fellbrustpanzer'}}},
+ sigrun:{n:'Späherin Sigrun',look:{race:'elf',hair:'#e8e8f8',outfit:'#3a5a8a',style:0}},
+});
+function placeRegions(){if(G.past)return;for(const [id,x,y,w,lines] of [
+ ['amara',222,100,0,[['Sultanin Amara','Die Oase Kamra steht seit dreihundert Jahren. Der Sand vergisst nichts.']]],
+ ['hassan',216,106,6,[['Händler Hassan','Seide, Gewürze, Datteln! … Nein? Dann wenigstens gute Ratschläge: Trink genug Wasser.']]],
+ ['ulla',62,178,6,[['Unke Ulla','Quaak … ich meine: Willkommen in Moorhain. Pass auf, wo du hintrittst.']]],
+ ['moos',56,184,6,[['Kräuterfrau Moos','Im Moor wächst gegen alles ein Kraut. Nur nicht gegen Dummheit.']]],
+ ['bjarne',215,184,4,[['Jarl Bjarne','Eisenwacht ist seit jeher das Tor zum Frostkamm. Solange ich lebe, fällt es nicht.']]],
+ ['sigrun',220,190,8,[['Späherin Sigrun','Auf dem Gipfelpfad heulen nachts die Wölfe. Mehr als sonst.']]]]){
+ const n=addNPC(id,x,y,{wander:w});n.lines=lines;n.talk=()=>dlg([n.lines[n.li++%n.lines.length]])}
+ const m=SVS().m||0,a=MISSIONS.findIndex(q=>q.n==='Wiesental brennt'),b=MISSIONS.findIndex(q=>q.n==='Ein Fest für Wiesental');if(a>0&&m>=a&&m<b){const n=NPCm('mira');if(n)n.hide=true}}
+function respawnAt(){const M=MISSIONS[SVS().m];if(pl&&G.bio){const b=G.bio[(pl.x/TS|0)+(pl.y/TS|0)*MW];if(b===1)return [222,112];if(b===2)return [62,186];if(b===3)return [215,192];if(b===4)return [256,70]}return [90,114]}
+// ---------- Aufheben ----------
+function nearPick(){if(!G||!G.picks)return null;let best=null,bd=30;for(const p of G.picks){if(p.taken)continue;const d=dist(p.x,p.y,pl.x,pl.y);if(d<bd){bd=d;best=p}}return best}
+function takePick(p){p.taken=true;burst(p.x,p.y,10,p.col||'#8aff9a',14,70);SND.cap();if(p.cb)p.cb(p)}
+function addPicks(list,spr,label,col){G.picks=G.picks||[];const a=list.map(([x,y])=>({x:TX(x),y:TX(y),spr,label,col}));G.picks.push(...a);return a}
+// ---------- Verbündete ----------
+const HA_C={};
+function heroAlly(id,x,y,o={}){const h=HEROES.find(q=>q.id===id);let c=HA_C[id];if(!c){c=document.createElement('canvas');try{miniHero(c,h)}catch(e){c.width=c.height=8}HA_C[id]=c}
+ const sc=(o.hgt||42)/c.height,u=spawnU(1,null,x,y,{follow:1,fr:[c],bk:[c],sc,h:c.height,spd:125,...o});u.hp=u.max=1e7;u.dmg=o.dmg||38;u.hero=id;return u}
+function miraAlly(x,y){const u=spawnU(1,null,x,y,{follow:1,fr:MIRA.f,bk:MIRA.b,sc:1.45,h:25,mira:1,spd:125});u.hp=u.max=1e7;u.dmg=42;return u}
+function useHero(id){if(id==='held'||id==='mira_s')applyGear(id);else becomeHero(id)}
+const talkTo=n=>new Promise(res=>{const o=n.talk;n.mark=true;n.hide=false;n.talk=()=>{n.talk=o;n.mark=false;res()}});
+function at(x,y,dir){pl.x=TX(x);pl.y=TX(y);if(dir!=null){G.plDir=dir;CAM.yaw=dir}}
+const clearFoes=()=>{for(const u of G.units)if(u.team===0&&!u.dead)killU(u,u.x,u.y,false);G.bossU=null};
+const clearAllies=()=>{for(const u of G.units)if(u.team===1&&!u.dead)killU(u,u.x,u.y,false)};
+function capt(name,kind,x,y,hp,dmg,col){const u=spawnCaptain(null,name,kind);u.x=TX(x);u.y=TY(y);u.hp=u.max=hp;if(dmg)u.dmg=dmg;banner(name,'',col||'#ff7a5a');return u}
+async function waves(list,label){for(let w=0;w<list.length;w++){const W=list[w];banner(`WELLE ${w+1} / ${list.length}`,label||'','#ffd76b');const a=[];for(const [kinds,n,x,y,R] of W)a.push(...horde(kinds,n,TX(x),TX(y),R||50,{hunt:1}));obj(`${label||'Halte durch'} (Welle ${w+1}/${list.length})`);await until(()=>alive(a)<=2);await wait(1)}}
+// ---------- Bosse ----------
+Object.assign(BOSSES,{
+ sandwurm_b:{...BOSSES.sandwurm,n:'Besessener Sandwurm',title:'Herrscher der Dünen',col:'#ffb84a',hp:9000,dmg:22},
+ quaxus:{...BOSSES.froschkoenig,n:'Froschkönig Quaxus',title:'Vom roten Nebel vergiftet',col:'#8aff6a',hp:10000,dmg:22},
+ frostfang:{...BOSSES.fenris,n:'Frostfang',title:'Wolf des ewigen Winters',col:'#8fe2ff',hp:10500,dmg:24},
+ hrimgar:{...BOSSES.ulfgar,n:'Hrimgar',title:'Schattenfürst des Frosts',col:'#8fe2ff',hp:13500,dmg:26},
+ varkon_b:{...BOSSES.varkon,n:'Varkon',title:'Schattenfürst der Glut',col:'#ff7a3a',hp:15500,dmg:28},
+ schwarzritter:{...BOSSES.archknight,n:'Der Schwarze Ritter',title:'Champion des Dämonenkönigs',col:'#b05aff',hp:17500,dmg:30,dark:1},
+ morvath1:{...BOSSES.daemonkoenig,n:'Morvath',title:'Der Dämonenkönig',col:'#ff3a4a',hp:21000,dmg:32,dark:1},
+ morvath2:{...BOSSES.archangel,n:'Morvath',title:'Die wahre Gestalt des Dämonenkönigs',col:'#ff2a4a',hp:26000,dmg:34,dark:1},
+});
+// ---------- Ausrüstung ----------
+Object.assign(SI,{
+ morgen_sand:{n:'Klinge des Morgens · Sandsegen',c:'held',slot:'wpn',t:'sword',col:'#ffd76b',atk:.5},
+ morgen_moor:{n:'Klinge des Morgens · Moorsegen',c:'held',slot:'wpn',t:'sword',col:'#8aff9a',atk:.62},
+ morgen_frost:{n:'Klinge des Morgens · Frostsegen',c:'held',slot:'wpn',t:'sword',col:'#bff0ff',atk:.74},
+ morgen_licht:{n:'Klinge des ersten Lichts',c:'held',slot:'wpn',t:'sword',col:'#fff4c0',atk:1.0},
+ wuestenspeer:{n:'Wüstenspeer',c:'held',slot:'wpn',t:'spear',col:'#e8c070',atk:.42},
+ eisaxt:{n:'Eisenwacht-Axt',c:'held',slot:'wpn',t:'axe',col:'#cfe6ff',atk:.6},
+ wuestenhelm:{n:'Wüstenhelm',c:'held',slot:'kopf',look:'wuestenhelm',hp:.14,def:.06},
+ wuestenpanzer:{n:'Wüstenpanzer',c:'held',slot:'brust',look:'wuestenbrustpanzer',hp:.3,def:.11},
+ fellhelm2:{n:'Jarlshelm',c:'held',slot:'kopf',look:'fellhelm',hp:.2,def:.08},
+ obsidianstiefel:{n:'Obsidianstiefel',c:'held',slot:'fuesse',look:'obsidianstiefel',hp:.12,def:.06,spd:.06},
+ obsidianpanzer:{n:'Obsidianpanzer',c:'held',slot:'brust',look:'obsidianbrustpanzer',hp:.4,def:.15},
+ sonnenhelm:{n:'Sonnenhelm',c:'held',slot:'kopf',look:'seraphimhelm',hp:.28,def:.12},
+ sonnenpanzer:{n:'Sonnenpanzer',c:'held',slot:'brust',look:'seraphimbrustpanzer',hp:.5,def:.18},
+ sonnenstiefel:{n:'Sonnenstiefel',c:'held',slot:'fuesse',look:'seraphimstiefel',hp:.12,spd:.15},
+ froschkrone:{n:'Froschkrone',c:'mira_s',slot:'kopf',look:'froschkrone',hp:.16,def:.06},
+ mondstab:{n:'Mondstab',c:'mira_s',slot:'wpn',t:'stern',col:'#cfe6ff',atk:.45},
+ siegelstab:{n:'Stab der Seherin',c:'mira_s',slot:'wpn',t:'stern',col:'#ff9fd0',atk:.75},
+ engelskleid:{n:'Kleid der Seherin',c:'mira_s',slot:'brust',look:'erzengelbrustpanzer',hp:.38,def:.12},
+});
+CHESTS.push(['c_oase',219,99,'held','wuestenspeer'],['c_duene',264,104,'held','wuestenhelm'],['c_moor',34,214,'held','obsidianstiefel'],['c_frost',226,186,'held','eisaxt'],['c_asche',236,30,'held','obsidianpanzer'],['m_moor',58,176,'mira_s','froschkrone'],['m_frost',210,190,'mira_s','mondstab']);
+// ---------- Ticks & Effekte ----------
+function storyTick2(dt){if(G.line&&state==='play'&&!G.dOwn){state='cut';G.dOwn=true;unlockMouse()}if(!G.bio)return;const b=G.bio[(pl.x/TS|0)+(pl.y/TS|0)*MW]||0;
+ {const wr=b===4&&G.tod==='day'&&!G.past;if(!!G.ashSky!==wr){G.ashSky=wr;setSky(storySky(wr?'red':'day'))}}
+ if(G.tod==='day'&&!G.past){const tc=rgb(BIO[b]?BIO[b].fog:'#bfe0f0');G.fogC=G.fogC.map((v,k)=>v+(tc[k]-v)*Math.min(1,dt*1.5))}
+ if(G.bioN!==b){G.bioN=b;if(G.free&&BIO[b])banner(BIO[b].n,'','#cdb6e6')}
+ if(G.tickFx)G.tickFx(dt);
+ if(G.atM&&G.free&&dist(pl.x,pl.y,G.atM.x,G.atM.y)<70){const m=G.atM.m;G.atM=null;runMission(m,false)}
+ if(G.free&&BIO[b]&&SVS().m>=5){G.wildT2=(G.wildT2||0)-dt;if(G.wildT2<=0){G.wildT2=3.5;G.wild=G.wild.filter(u=>!u.dead);if(G.wild.length<14){const a=Math.random()*TAU,X=pl.x+Math.cos(a)*rand(220,330),Y=pl.y+Math.sin(a)*rand(220,330);const ib=(X/TS|0)+(Y/TS|0)*MW;if(G.bio[ib]===b&&!solid(X,Y)&&!G.noTree.some(([x,y,R])=>Math.hypot(X/TS-x,Y/TS-y)<R+4))G.wild.push(...horde(BIO[b].mobs,3,X,Y,30))}}}}
+function renderStory2(vis){const t=G.time;
+ for(const h of G.hearts||[]){if(!vis(h.x,h.y,80))continue;const c=rgb(h.col),taken=(SVS().hearts||{})[h.id];const a=taken?.12:.35+.15*Math.sin(t*3);wallFx(BA,h.x,h.y,10,20,140,c,a,16);arcFx(BA,h.x,h.y,1.3,8,14,t*2,t*2+TAU,c,a+.2,20);if(!taken&&Math.random()<.2)burst(h.x+rand(-10,10),h.y+rand(-10,10),rand(20,60),h.col,1,25)}
+ for(const b of G.bars||[]){if(b.open)continue;const x0=TX(b.x0),x1=TX(b.x1),y=TX(b.y)-8;if(!vis((x0+x1)/2,y,200))continue;for(let x=x0;x<=x1;x+=24)wallFx(BA,x,y,14,0,120,rgb('#ff2a3a'),.22+.08*Math.sin(t*4+x),12);if(Math.random()<.3)burst(rand(x0,x1),y,rand(10,100),'#ff3a4a',1,20)}
+ for(const p of G.picks||[]){if(p.taken||!vis(p.x,p.y,30))continue;bill(BO,p.spr,p.x,p.y,0,p.spr.width*1.4,p.spr.height*1.4);if(Math.random()<.08)burst(p.x,p.y,10,p.col||'#8aff9a',1,15)}
+ for(const f of G.fires||[]){if(!vis(f[0],f[1],60))continue;if(Math.random()<.5)burst(f[0]+rand(-14,14),f[1]+rand(-14,14),rand(30,70),Math.random()<.5?'#ff8a2a':'#ffd23a',1,30)}
+ if(G.fort&&G.chain&&vis(G.fort.x,G.fort.y,80))arcFx(BA,G.chain.x,G.chain.y,1.2,10,16,t*3,t*3+TAU,rgb('#ff3a4a'),.5,18)}
+// automatischer Übergang zu Folgemissionen
+done=(f=>function(i,gold){f(i,gold);const N=MISSIONS[i+1];if(!(N&&(N.auto||N.cont))&&pl&&pl.h.id!=='held'&&!G.past)useHero('held');if(N&&(N.auto||N.cont)&&SVS().m===i+1){const g=G;setTimeout(()=>{if(G===g&&G.free)runMission(i+1,!!(N.cont||N.past!==MISSIONS[i].past))},1800)}})(done);
+runMission=(f=>function(i,fresh){const M=MISSIONS[i];if(!fresh&&pl&&pl.h.id!==M.hero)useHero(M.hero);f(i,fresh)})(runMission);
+const heart=id=>{const S=SVS();S.hearts=S.hearts||{};S.hearts[id]=1;persist()};
+
+// =====================================================================
+// HELDENGESCHICHTE · Comic-Bilder, Missionen und Skripte der Teile 2–10
+// =====================================================================
+const HF=id=>{const h=HEROES.find(x=>x.id===id);if(h&&h.f)return h.f[0];if(!HA_C[id]){const c=document.createElement('canvas');try{miniHero(c,h)}catch(e){c.width=c.height=8}HA_C[id]=c}return HA_C[id]};
+const MF=k=>mobType(k).fr[0];
+const glowD=(g,x,y,r,c)=>{for(let k=r;k>0;k-=3){g.fillStyle=c;g.globalAlpha=.08+.5*(1-k/r)**2;g.beginPath();g.arc(x,y,k,0,TAU);g.fill()}g.globalAlpha=1};
+const stars=(px,n,col='#ffffff',h=80)=>{const r=mulberry(n);for(let i=0;i<n;i++)px(r()*256|0,r()*h|0,col)};
+Object.assign(PAINT,{
+ teil(g,rect,px){grad(rect,'#0a0414','#2a1238',0,144,10);stars(px,60,'#cdb6e6',144);g.fillStyle='rgba(255,215,107,.15)';g.fillRect(124,10,8,124);rect(126,18,4,96,'#e8e8f0');rect(127,18,1,96,'#ffffff');rect(116,110,24,5,'#ffd76b');rect(125,115,6,16,'#8a5a34');disc(px,128,133,4,'#ffd76b')},
+ bote(g,rect,px){grad(rect,'#1a0408','#e0581a',0,110,10);hills(g,'#2a0a0a',100,8,.04,1);for(const [x,w] of [[150,22],[180,18],[206,24]]){rect(x,96,w,16,'#140406');poly(g,'#140406',[[x-3,96],[x+w/2,84],[x+w+3,96]])}for(let i=0;i<30;i++){const x=150+Math.random()*80,y=70+Math.random()*30;px(x|0,y|0,Math.random()<.5?'#ffd23a':'#ff6a2a')}rect(0,112,256,32,'#0a0204');put(g,silo(MF('daemonenritter'),'#050102'),70,118,3.6);disc(px,66,62,2,'#ff2a3a');disc(px,74,62,2,'#ff2a3a')},
+ herzen(g,rect,px){grad(rect,'#05020a','#1a0a24',0,144,8);g.globalAlpha=.35;g.drawImage(kingSil(),0,0,256,256,-32,-180,320,320);g.globalAlpha=1;for(const [x,y,c] of [[56,52,'#ffd23a'],[200,52,'#5aff8a'],[56,112,'#8fe2ff'],[200,112,'#ff5a2a']]){glowD(g,x,y,26,c);disc(px,x,y,9,c);disc(px,x-3,y-3,3,'#ffffff')}},
+ wueste(g,rect,px){grad(rect,'#ffd8a0','#ff9a4a',0,80,8);disc(px,200,40,18,'#fff0c0');hills(g,'#e8b870',96,10,.025,1);hills(g,'#d8a058',112,8,.04,2);hills(g,'#c88a48',128,6,.05,3);poly(g,'#b8804a',[[30,100],[60,64],[90,100]]);poly(g,'#9a6a3a',[[60,64],[90,100],[72,100]]);for(const x of [130,150,170])put(g,sprOf('palme'),x,112,1.4)},
+ tempel(g,rect,px){grad(rect,'#2a1a08','#8a5a1a',0,144,8);for(const x of [40,80,176,216]){rect(x-7,30,14,90,'#c8a060');rect(x-7,30,4,90,'#e8c080');rect(x-10,26,20,6,'#e8c080')}rect(0,118,256,26,'#6a4a2a');glowD(g,128,70,44,'#ffd23a');disc(px,128,70,12,'#ffd23a');disc(px,124,66,4,'#ffffff');put(g,HF('held'),128,132,3.6)},
+ sumpf(g,rect,px){grad(rect,'#2a3a30','#7a9a88',0,144,8);for(const [x,s] of [[30,2.2],[80,1.6],[190,2.4],[230,1.8]])put(g,silo(sprOf('sumpfbaum'),'#1a2a20'),x,128,s);g.fillStyle='rgba(200,230,210,.25)';for(let y=90;y<144;y+=6)g.fillRect(0,y,256,3);for(const [x,y] of [[120,96],[150,104],[176,92]]){px(x,y,'#d85aff');px(x+4,y,'#d85aff')}rect(0,128,256,16,'#2a4a3a')},
+ frost(g,rect,px){grad(rect,'#0a1a3a','#5a8ac8',0,110,8);for(let k=0;k<3;k++){g.fillStyle=['rgba(90,255,180,.18)','rgba(120,200,255,.16)','rgba(200,140,255,.12)'][k];g.beginPath();g.moveTo(0,30+k*12);for(let x=0;x<=256;x+=16)g.lineTo(x,30+k*12+Math.sin(x*.05+k)*10);g.lineTo(256,60+k*12);g.lineTo(0,60+k*12);g.fill()}stars(px,40);poly(g,'#e8f0f8',[[0,120],[50,50],[96,110],[140,40],[200,110],[256,60],[256,144],[0,144]]);poly(g,'#a8b8d0',[[50,50],[70,80],[60,110],[0,120]]);poly(g,'#a8b8d0',[[140,40],[150,80],[130,110],[96,110]]);for(let x=90;x<170;x+=6)rect(x,104,4,18,'#6a4a2a')},
+ raub(g,rect,px){grad(rect,'#0a0206','#4a0612',0,144,8);g.drawImage(kingSil(),0,0,256,256,-70,-170,330,330);for(let r=40;r>0;r-=6){g.fillStyle=`rgba(255,40,60,${.04})`;g.beginPath();g.arc(170,60,r,0,TAU);g.fill()}put(g,MIRA.f[0],170,84,2.6);g.strokeStyle='#ff2a3a';g.lineWidth=2;g.beginPath();g.arc(170,64,24,0,TAU);g.stroke();disc(px,112,40,2,'#ff2a3a');disc(px,132,40,2,'#ff2a3a')},
+ zeittor(g,rect,px){grad(rect,'#040818','#1a2a6a',0,144,8);for(let k=0;k<6;k++){g.strokeStyle=`rgba(122,180,255,${.5-k*.07})`;g.lineWidth=2;g.beginPath();g.ellipse(128,72,30+k*16,38+k*12,k*.4,0,TAU);g.stroke()}g.drawImage(ZEIT,0,0,48,60,92,14,72,90);g.fillStyle='rgba(200,230,255,.45)';g.beginPath();g.ellipse(128,62,16,22,0,0,TAU);g.fill();put(g,silo(HF('held'),'#0a1430'),128,132,3)},
+ licht(g,rect,px){grad(rect,'#ffe9a0','#ff8a3a',0,144,8);for(let k=0;k<10;k++){const a=k/10*TAU;poly(g,'rgba(255,255,255,.2)',[[128,64],[128+Math.cos(a)*300,64+Math.sin(a)*300],[128+Math.cos(a+.15)*300,64+Math.sin(a+.15)*300]])}hills(g,'#8a4a2a',122,5,.04,0);put(g,HF('urheld'),84,130,3.6);put(g,HF('held'),172,130,3.6,true);glowD(g,128,70,30,'#ffffff');disc(px,128,70,6,'#ffffff')},
+ asche(g,rect,px){grad(rect,'#1a0404','#c83818',0,120,10);poly(g,'#2a0a08',[[20,144],[100,40],[120,36],[140,40],[220,144]]);poly(g,'#ff5a1a',[[108,42],[132,42],[126,70],[118,90],[112,60]]);for(let i=0;i<20;i++)px(100+Math.random()*40|0,20+Math.random()*24|0,'#ffb84a');rect(150,70,90,60,'#0a0204');for(const x of [150,186,228])rect(x,50,14,30,'#0a0204');for(const x of [160,200])rect(x,86,6,8,'#ff3a2a');rect(0,128,256,16,'#140404')},
+ feste(g,rect,px){grad(rect,'#0a0206','#5a0a14',0,144,8);rect(60,20,136,90,'#0a0204');for(const x of [52,180])rect(x,6,24,104,'#0a0204');rect(108,60,40,50,'#2a0a10');for(let x=108;x<148;x+=6)rect(x,60,2,50,'#5a1a20');const A=ALLY_L[0].f[0];for(let i=0;i<14;i++)put(g,silo(A,'#1a0a14'),20+i*17,144-(i%3)*3,2);put(g,silo(HF('held'),'#000000'),128,140,3.2)},
+ ritter(g,rect,px){grad(rect,'#0a0214','#3a1a5a',0,144,8);glowD(g,128,60,50,'#b05aff');put(g,silo(MF('daemonenritter'),'#0a0410'),128,136,4.4);disc(px,124,54,2,'#e0c0ff');rect(0,136,256,8,'#0a0410')},
+ thron(g,rect,px){grad(rect,'#0a0206','#3a0610',0,144,8);for(const x of [24,72,184,232]){rect(x-8,0,16,144,'#1a0a10');rect(x-8,0,4,144,'#2a1018')}g.drawImage(kingSil(),0,0,256,256,-40,-176,330,330);put(g,MIRA.f[0],206,126,2.2);g.strokeStyle='#8a8a96';g.lineWidth=1;for(const d of [-1,1]){g.beginPath();g.moveTo(206+d*8,104);g.lineTo(206+d*20,60);g.stroke()}},
+ lichtblut(g,rect,px){grad(rect,'#05020a','#2a0a1a',0,144,8);g.globalAlpha=.6;g.drawImage(kingSil(),0,0,256,256,-37,-176,330,330);g.globalAlpha=1;for(let k=0;k<3;k++){g.fillStyle=['rgba(255,255,255,.9)','rgba(255,215,107,.5)','rgba(255,159,208,.4)'][k];g.fillRect(122-k*6,0,12+k*12,144)}put(g,HF('held'),96,140,3);put(g,MIRA.f[0],160,140,3,true)},
+ fest(g,rect,px){grad(rect,'#0a0a2a','#3a2a6a',0,110,8);stars(px,50);for(const [x,y,c] of [[60,30,'#ff9fd0'],[130,22,'#ffd23a'],[200,36,'#8fe2ff'],[96,48,'#5aff8a']])for(let k=0;k<14;k++){const a=k/14*TAU;for(let d=4;d<16;d+=3)px(x+Math.cos(a)*d|0,y+Math.sin(a)*d|0,c)}for(const [x,w,c] of [[30,22,'#c8584a'],[70,18,'#5a78c0'],[180,24,'#c8784a'],[220,16,'#9a6aa8']]){rect(x,98,w,16,'#eedfc0');poly(g,c,[[x-3,98],[x+w/2,86],[x+w+3,98]]);rect(x+5,104,4,4,'#ffd88a')}rect(0,114,256,30,'#2a4a2a');put(g,HF('held'),116,132,2.6);put(g,MIRA.f[0],142,132,2.6,true);for(const x of [20,240])put(g,sprOf('lagerfeuer'),x,130,1.2)},
+});
+// ---------- Missionen ----------
+for(let i=1;i<=4;i++){MISSIONS[i].ch=1;MISSIONS[i].card='frieden'}
+MISSIONS.push(
+ {n:'Der Schattenbote',hero:'held',giver:'bruno',ch:2,card:'bote'},
+ {n:'Der Pass im Osten',hero:'held',ch:2,auto:1,home:[124,112]},
+ {n:'Oase Kamra',hero:'held',ch:3,card:'wueste',at:[200,110,'Folge dem Pass nach Osten bis zur Oase Kamra'],home:[196,110]},
+ {n:'Die Karawane',hero:'sahir',giver:'hassan',ch:3,home:[218,112]},
+ {n:'Der Wurm in den Dünen',hero:'held',giver:'amara',ch:3,home:[222,104]},
+ {n:'Herz des Sandes',hero:'held',ch:3,auto:1,home:[262,104]},
+ {n:'Moorhain',hero:'held',giver:'mira',ch:4,card:'sumpf',home:[95,114]},
+ {n:'Kräuter für Moorhain',hero:'mira_s',giver:'moos',ch:4,home:[58,186]},
+ {n:'Der kranke König',hero:'held',giver:'ulla',ch:4,home:[64,186]},
+ {n:'Herz des Moores',hero:'held',ch:4,auto:1,home:[118,206]},
+ {n:'Eisenwacht',hero:'held',ch:5,card:'frost',at:[216,172,'Reise vom Sandmeer nach Süden in den Frostkamm (Eisenwacht)'],home:[222,150]},
+ {n:'Der Gipfelpfad',hero:'held',giver:'bjarne',ch:5,home:[218,192]},
+ {n:'Herz des Frosts',hero:'held',ch:5,auto:1,home:[270,212]},
+ {n:'Wiesental brennt',hero:'held',ch:6,card:'raub',cont:1,home:[90,96]},
+ {n:'Brunos Geheimnis',hero:'held',ch:6,auto:1,home:[92,110]},
+ {n:'Vor tausend Jahren',hero:'held',ch:7,card:'zeittor',cont:1,past:1},
+ {n:'Der erste Held',hero:'urheld',ch:7,auto:1,past:1},
+ {n:'Zurück durch das Tor',hero:'held',ch:7,auto:1,past:1},
+ {n:'Die Barriere',hero:'held',ch:8,card:'asche',cont:1,home:[252,84]},
+ {n:'Herz der Glut',hero:'held',ch:8,auto:1,home:[256,52]},
+ {n:'Vor den Toren',hero:'held',ch:8,auto:1,home:[258,46]},
+ {n:'Sturm auf die Schattenfeste',hero:'held',ch:9,card:'feste',cont:1,home:[262,46]},
+ {n:'Der Hof der Schatten',hero:'held',ch:9,auto:1,home:[277,26]},
+ {n:'Der Schwarze Ritter',hero:'held',ch:9,auto:1,home:[277,20]},
+ {n:'Der Thronsaal',hero:'held',ch:10,card:'thron',cont:1,home:[276,14]},
+ {n:'Die wahre Gestalt',hero:'held',ch:10,auto:1,home:[276,13]},
+ {n:'Ein Fest für Wiesental',hero:'held',ch:10,auto:1,noCard:1,home:[90,108]},
+);
+const MI=n=>MISSIONS.findIndex(m=>m.n===n);
+const villager=(id,x,y)=>{const n=NPCm(id);if(n){n.x=n.hx=TX(x);n.y=n.hy=TX(y);n.hide=false;n.wander=0}return n};
+const SC={};
+// ---------------- TEIL 2 ----------------
+SC['Der Schattenbote']=async(fresh)=>{const I=MI('Der Schattenbote'),bruno=NPCm('bruno'),mira=NPCm('mira');if(fresh)at(98,108,-Math.PI/2);
+ await dlg([['Ältester Bruno','Seit der Nacht des roten Mondes schlafe ich kaum noch. Und wenn doch, träume ich von Feuer.'],['Ältester Bruno','Die Klinge, die du trägst … die Klinge des Morgens. Ich habe in den Schriften mehr über sie gefunden.'],['Mira','Bruno! Am Nordtor steht ein Ritter in schwarzer Rüstung … und er ist nicht allein!']]);
+ await cut(async()=>{setStoryTime('eve');at(90,96,-Math.PI/2);villager('mira',93,98);villager('tom',88,94);camShot(TX(90),TX(84),Math.PI/2,150,60,30,0);await wait(.5);camShot(TX(90),TX(86),Math.PI/2+.2,120,44,26,2);await wait(1);
+  await dlg([['Schattenbote Vorn','Bewohner von Wiesental. Hört die Worte eures neuen Herrn.'],['Schattenbote Vorn','Kniet nieder, und ihr dürft leben. Wehrt euch, und dieses Dorf wird Asche.'],['Wache Tom','Wir knien vor niemandem! Nicht wahr, Frischling?']])});
+ const cp=capt('Schattenbote Vorn','daemonenritter',90,82,4400,22,'#ff5a6a');horde(['imp','imp','hoellenhund'],14,TX(90),TX(80),70,{hunt:1});
+ obj('Besiege den Schattenboten am Nordtor',cp.x,cp.y);await until(()=>cp.dead);await wait(.6);clearFoes();
+ await cut(async()=>{camShot(TX(90),TX(86),Math.PI/2+.3,110,40,20,0);await dlg([['Schattenbote Vorn','Ihr … könnt ihn nicht aufhalten. Der Meister ist noch schwach … doch bald …'],['Schattenbote Vorn','Bald gehören ihm die vier Herzen. Sand, Moor, Frost und Glut. Dann beugt sich die ganze Welt …']]);G.flashR=.4;await wait(.5);
+  at(90,104,-Math.PI/2);villager('bruno',92,106);villager('mira',88,106);faceTo(bruno,pl.x,pl.y);faceTo(mira,pl.x,pl.y);G.plDir=Math.PI/2;camShot(TX(90),TX(105),-Math.PI/2+.4,100,40,20,0);
+  await dlg([['Ältester Bruno','Die vier Herzen … genau davon sprechen die Schriften.'],['Ältester Bruno','Vier uralte Kräfte, die dieses Land seit Anbeginn schützen. Im Sandmeer im Osten, im Nebelsumpf im Süden, im Frostkamm dahinter … und eins im Aschenland, wo kein Mensch mehr lebt.'],['Ältester Bruno','Die Klinge des Morgens wurde aus ihrem Licht geschmiedet. Wer ihren Segen trägt, kann einem Dämonenkönig standhalten.'],['Mira','Und wer die Herzen besitzt, dem gehorcht die Welt. Dann müssen wir schneller sein als er!'],['Ältester Bruno','Das erste Herz ruht im Sandmeer. Der Weg führt durch den Pass hinter dem Übungsplatz.']])});
+ await comic([{a:'herzen',t:'Sand, Moor, Frost und Glut. Vier Herzen, die das Land seit Anbeginn schützen.'},{a:'herzen',t:'Wer sie alle besitzt, dem gehorcht die Welt.'}]);setStoryTime('day');done(I,300)};
+SC['Der Pass im Osten']=async(fresh)=>{const I=MI('Der Pass im Osten');if(fresh)at(124,112,0);setStoryTime('day');
+ await goTo(TX(146),TX(117),60,'Folge der Straße nach Osten durch den Pass');horde(['kaefer','fledderle','gruen'],12,TX(160),TX(115),60,{hunt:1});
+ await goTo(TX(176),TX(112),60,'Kämpfe dich durch den Pass');
+ const sa=heroAlly('sahir',TX(194),TX(110),{follow:0});const a=horde(['skorpion','skorpion','sand'],16,TX(194),TX(110),70,{hunt:1});
+ await cut(async()=>{camShot(TX(192),TX(110),Math.PI,120,46,24,0);await wait(.4);await dlg([['Sahir','He, du da mit der leuchtenden Klinge! Hilf mir mit diesen Biestern, dann zeig ich dir den Weg zur Oase!']])});
+ obj('Hilf dem Reiter gegen die Skorpione');await until(()=>alive(a)<=1);clearFoes();
+ await cut(async()=>{camShot(sa.x,sa.y,Math.PI+.4,90,40,22,0);await dlg([['Sahir','Ich bin Sahir, Reiter der Oase Kamra. Und du kommst aus dem grünen Land hinter den Bergen, oder?'],['Sahir','Seit Wochen greifen die Tiere des Sandmeers unsere Karawanen an. Und nachts singt etwas unter den Dünen.'],['Sahir','Ein Herz? Hm … die Sultanin weiß mehr über den Sandtempel. Komm, die Oase ist nicht weit.']])});
+ sa.follow=1;done(I,250)};
+// ---------------- TEIL 3 ----------------
+SC['Oase Kamra']=async(fresh)=>{const I=MI('Oase Kamra'),am=NPCm('amara');if(fresh)at(200,110,0);
+ await cut(async()=>{camShot(TX(222),TX(108),-Math.PI/2+.4,230,120,10,0);await wait(.4);camShot(TX(222),TX(108),-Math.PI/2+.1,190,80,10,3);await wait(2.2);
+  at(212,108,0);villager('amara',220,104);faceTo(am,pl.x,pl.y);G.plDir=Math.atan2(am.y-pl.y,am.x-pl.x);camShot(TX(216),TX(106),-Math.PI/2+.7,90,38,20,1);await wait(.8);
+  await dlg([['Sultanin Amara','Sahir hat mir von dir erzählt. Ein Fremder mit der Klinge aus den alten Liedern.'],['Sultanin Amara','Das Herz des Sandes ruht im Sandtempel, südöstlich der großen Dünen. Seit Generationen hütet meine Familie den Weg dorthin.'],['Sultanin Amara','Doch seit einem Mond wütet der große Sandwurm in den Dünen. Er war immer friedlich. Jetzt frisst er Karawanen.'],['Sultanin Amara','Und meine Karawane mit dem Wasser für die Oase ist noch draußen. Sprich mit Händler Hassan, er weiß, wo sie steckt.']])});
+ done(I,200)};
+SC['Die Karawane']=async(fresh)=>{const I=MI('Die Karawane');if(fresh)at(218,112,0);
+ await dlg([['Händler Hassan','Meine Karawane steckt bei den Dünen fest! Skorpione überall!'],['Sahir','Überlass das mir. Auf meinem Kamel bin ich schneller als jeder Skorpion.'],['Händler Hassan','Bring sie heil zurück, Sahir. Ohne das Wasser verdurstet die halbe Oase.']]);
+ await goTo(TX(244),TX(94),70,'Reite zu den Dünen und finde die Karawane');
+ const kv=addNPC('ibo',246,90,{wander:0});G.car=100;let warned=0;
+ G.tickFx=dt=>{let n=0;for(const u of G.units)if(u.team===0&&!u.dead&&dist(u.x,u.y,kv.x,kv.y)<52)n++;G.car-=n*dt*1.6;if(n&&!warned){warned=1;say('Karawanenführer Ibo','Hilfe! Sie greifen die Kamele an!')}if(n===0)warned=0;G.obj=`Beschütze die Karawane · ${Math.max(0,Math.ceil(G.car))} %`;if(G.car<=0&&!G.over){G.tickFx=null;storyFail()}};
+ await dlg([['Karawanenführer Ibo','Sahir! Den Göttern sei Dank. Die Kamele sind erschöpft, wir kommen nur langsam voran.']]);
+ const legs=[[240,96],[232,100],[226,104],[222,108]];for(let k=0;k<legs.length;k++){const [x,y]=legs[k];const a=Math.random()*TAU;horde(k%2?['skorpion','sand','kaefer']:['skorpion','skorpion','sand'],8+k*2,kv.x+Math.cos(a)*150,kv.y+Math.sin(a)*150,50,{});G.mark={x:kv.x,y:kv.y};await walk(kv,TX(x),TX(y),30);await until(()=>{let n=0;for(const u of G.units)if(u.team===0&&!u.dead&&dist(u.x,u.y,kv.x,kv.y)<160)n++;return n<=1})}
+ G.tickFx=null;G.mark=null;clearFoes();await dlg([['Karawanenführer Ibo','Wir haben es geschafft! Das Wasser ist in der Oase!'],['Händler Hassan','Sahir, du bist ein Held! … Und der Fremde auch, wo auch immer er gerade steckt.']]);
+ done(I,300)};
+SC['Der Wurm in den Dünen']=async(fresh)=>{const I=MI('Der Wurm in den Dünen');if(fresh)at(222,104,0);
+ await dlg([['Sultanin Amara','Du hast uns das Wasser zurückgebracht. Jetzt bitte ich dich um mehr.'],['Sultanin Amara','Beruhige den Sandwurm. Solange er wütet, kommt niemand zum Tempel.'],['Sahir','Ich reite mit dir. Allein findest du den Wurm sowieso nicht. Er findet dich.']]);
+ const sa=heroAlly('sahir',pl.x+30,pl.y);
+ await goTo(TX(248),TX(92),70,'Reise mit Sahir in die großen Dünen');
+ await cut(async()=>{camShot(TX(252),TX(90),-Math.PI/2+.5,160,60,30,0);G.shake=12;SND.warn();await wait(.8);await dlg([['Sahir','Der Boden bebt … er kommt!'],['Fürst Skarab','Ha! Der Wurm gehorcht jetzt mir. Und bald auch das Herz des Sandes!'],['Fürst Skarab','Friss sie, mein Hübscher!']])});
+ const B=bossAt('sandwurm_b',TX(252),TX(86),9000);obj('Besiege den besessenen Sandwurm');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await cut(async()=>{camShot(pl.x,pl.y,-Math.PI/2+.4,110,42,20,0);await dlg([['Sahir','Der rote Nebel weicht aus ihm … er gräbt sich zurück in die Tiefe. Er wird wieder friedlich sein.'],['Fürst Skarab','Verflucht! Dann hole ich mir das Herz eben selbst!'],['Sahir','Er will zum Tempel! Schnell, ihm nach!']])});
+ giveItem('held','wuestenpanzer');done(I,350)};
+SC['Herz des Sandes']=async(fresh)=>{const I=MI('Herz des Sandes');if(fresh)at(262,104,Math.PI/4);if(!G.units.some(u=>u.hero==='sahir'&&!u.dead))heroAlly('sahir',pl.x+30,pl.y);
+ horde(['skorpion','sand','imp'],14,TX(270),TX(116),60,{hunt:1});await goTo(TX(274),TX(120),55,'Folge Fürst Skarab zum Sandtempel');
+ const cp=capt('Fürst Skarab','skorpion',276,130,6200,22,'#ffb84a');horde(['skorpion','imp','imp'],12,TX(276),TX(130),60,{hunt:1});say('Fürst Skarab','Zu spät, Klingenträger! Das Herz gehört dem Meister!');
+ obj('Besiege Fürst Skarab, den Schattenfürsten des Sandes',cp.x,cp.y);await until(()=>cp.dead);await wait(.5);clearFoes();
+ await cut(async()=>{at(276,129,-Math.PI/2);camShot(TX(276),TX(126),-Math.PI/2+.25,110,46,30,0);G.pillar={x:TX(276)+8,y:TX(124)+8,r:28,col:'#ffd23a',a:.3};await wait(.8);
+  await dlg([['Herz des Sandes','Träger der Morgenklinge … ich habe dich erwartet. Tausend Jahre lang.'],['Herz des Sandes','Der Feind ist erwacht und hungrig. Nimm meinen Segen, und trag ihn zu meinen Geschwistern.']]);G.flashW=.8;G.shake=6;SND.cap();heart('sand');await wait(.8);G.pillar=null});
+ giveItem('held','morgen_sand');await comic([{a:'tempel',t:'Die Klinge des Morgens leuchtete golden wie die Sonne über dem Sandmeer.'}]);
+ await dlg([['Sahir','Die Sultanin wird ein Fest geben. … Na gut, nach allem hier vielleicht ein kleines.'],['Sahir','Wenn du mich brauchst, ruf. Mein Kamel und ich sind schneller da, als du denkst.']]);
+ done(I,500)};
+// ---------------- TEIL 4 ----------------
+SC['Moorhain']=async(fresh)=>{const I=MI('Moorhain');if(fresh)at(95,114,-Math.PI/2);const mira=NPCm('mira');
+ await dlg([['Mira','Du bist zurück! Und deine Klinge leuchtet golden … dann hast du das erste Herz gefunden!'],['Mira','Ich habe Brunos Schriften gelesen, die halbe Nacht. Das zweite Herz liegt im Nebelsumpf, südlich vom Dorf.'],['Mira','Und diesmal komme ich mit. Keine Widerrede.']]);
+ mira.hide=true;miraAlly(mira.x,mira.y);
+ await goTo(TX(88),TX(156),70,'Reise mit Mira nach Süden in den Nebelsumpf');say('Mira','Puh, hier riecht es nach nassen Socken. Und nach Ärger.');
+ horde(['frosch','frosch','moorgeist'],12,TX(78),TX(170),60,{hunt:1});await goTo(TX(64),TX(180),60,'Folge dem Steg nach Moorhain');
+ const ul=NPCm('ulla');await cut(async()=>{at(66,180,Math.PI);villager('ulla',62,178);faceTo(ul,pl.x,pl.y);camShot(TX(64),TX(179),Math.PI/2+.6,100,40,20,0);
+  await dlg([['Unke Ulla','Quaak … Fremde! Und eine Klinge, die leuchtet? Na, das ist ja mal was Neues.'],['Unke Ulla','Seit der rote Nebel aus dem Osten kriecht, werden alle krank. Sogar unser König, der gute Quaxus.'],['Mira','Euer König ist … ein Frosch?'],['Unke Ulla','Der weiseste Frosch, den das Moor je gesehen hat! Aber jetzt tobt er in seinem Teich und erkennt niemanden mehr.'],['Unke Ulla','Kräuterfrau Moos braut Medizin für die Kranken. Hilf ihr zuerst. Bitte.']])});
+ done(I,250)};
+SC['Kräuter für Moorhain']=async(fresh)=>{const I=MI('Kräuter für Moorhain');if(fresh)at(58,186,0);
+ await dlg([['Kräuterfrau Moos','Ich brauche Mondlilien. Sechs Stück. Sie wachsen nur in der Moortiefe im Westen.'],['Kräuterfrau Moos','Die Moorgeister lieben sie auch. Also sei vorsichtig, Kind.'],['Mira','Ich mach das! Meine Stäbe sind schneller als jeder Geist.']]);
+ heroAlly('held',pl.x+20,pl.y);banner('MIRA','Sammle die Mondlilien','#ff9fd0');
+ let got=0;const P=addPicks([[34,212],[43,207],[38,218],[47,212],[31,216],[40,203]],sprOf('mondblume'),'Mondlilie pflücken','#cfe6ff');for(const p of P)p.cb=()=>{got++;say('Mira',got<6?`Eine Mondlilie! Noch ${6-got}.`:'Das war die letzte!')};
+ await goTo(TX(40),TX(206),80,'Geh in die Moortiefe im Westen');horde(['moorgeist','moorgeist','blatt'],16,TX(38),TX(212),80,{hunt:1});
+ obj('Pflücke 6 Mondlilien (0/6)');await until(()=>{G.obj=`Pflücke 6 Mondlilien (${got}/6)`;if(Math.random()<.004&&G.nE<20)horde(['moorgeist','pilzling'],4,pl.x+rand(-200,200),pl.y+rand(-200,200),40,{hunt:1});return got>=6});
+ const cp=capt('Moorgeist-Mutter','moorgeist',38,212,3800,18,'#d85aff');say('Mira','Huch! Das ist aber ein großer Geist!');obj('Besiege die Moorgeist-Mutter',cp.x,cp.y);await until(()=>cp.dead);clearFoes();
+ await goTo(TX(58),TX(184),50,'Bring die Mondlilien zu Kräuterfrau Moos');
+ await dlg([['Kräuterfrau Moos','Wunderbar, Kind! Damit braue ich Medizin für das ganze Dorf.'],['Kräuterfrau Moos','Weißt du, du erinnerst mich an jemanden. An ein altes Bild im Tempel … eine Frau mit rosa Haar. Komisch.']]);
+ giveItem('mira_s','froschkrone');done(I,300)};
+SC['Der kranke König']=async(fresh)=>{const I=MI('Der kranke König');if(fresh)at(64,186,0);
+ await dlg([['Unke Ulla','Die Kranken erholen sich! Jetzt kann nur noch einer den Nebel aus Quaxus vertreiben: du.'],['Unke Ulla','Sein Teich liegt im Osten. Sei sanft zu ihm, wenn du kannst. Und schnell, wenn nicht.']]);
+ if(!G.units.some(u=>u.mira&&!u.dead)){const m=NPCm('mira');if(m)m.hide=true;miraAlly(pl.x+20,pl.y)}
+ await goTo(TX(108),TX(204),70,'Geh zum Teich von König Quaxus');
+ await cut(async()=>{camShot(TX(112),TX(204),-Math.PI/2+.3,150,60,30,0);G.shake=6;await wait(.6);await dlg([['Froschkönig Quaxus','QUAAAAK! Eindringlinge! Der rote Nebel … er flüstert … ihr seid Feinde!'],['Mira','Er ist ganz rot um die Augen. Wir müssen ihn zur Vernunft bringen!']])});
+ const B=bossAt('quaxus',TX(112),TX(202),10000);obj('Befreie König Quaxus vom roten Nebel');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await cut(async()=>{camShot(pl.x,pl.y,-Math.PI/2+.4,100,40,20,0);await dlg([['Froschkönig Quaxus','Quaak … mein Kopf … was ist geschehen?'],['Froschkönig Quaxus','Eine Frau aus Nebel kam zum Moorschrein. Sie hat das Herz berührt, und dann wurde alles rot.'],['Froschkönig Quaxus','Geht zum Schrein im Osten. Rettet das Herz, ehe sie es mitnimmt!']])});
+ done(I,400)};
+SC['Herz des Moores']=async(fresh)=>{const I=MI('Herz des Moores');if(fresh)at(118,206,0);if(!G.units.some(u=>u.mira&&!u.dead)){const m=NPCm('mira');if(m)m.hide=true;miraAlly(pl.x+20,pl.y)}
+ horde(['moorgeist','frosch','skelett'],14,TX(130),TX(214),60,{hunt:1});await goTo(TX(136),TX(218),50,'Eile zum Moorschrein im Osten');
+ const cp=capt('Fürstin Morla','moorgeist',140,224,6800,22,'#d85aff');horde(['moorgeist','moorgeist','skelett'],12,TX(140),TX(222),60,{hunt:1});say('Fürstin Morla','Wie lästig. Und wie hübsch … die kleine Seherin ist auch dabei.');
+ obj('Besiege Fürstin Morla, die Schattenfürstin des Moores',cp.x,cp.y);await until(()=>cp.dead);await wait(.5);clearFoes();
+ await cut(async()=>{at(140,226,-Math.PI/2);camShot(TX(140),TX(223),-Math.PI/2+.25,100,44,26,0);G.pillar={x:TX(140)+8,y:TX(222),r:26,col:'#5aff8a',a:.3};await wait(.6);
+  await dlg([['Fürstin Morla','Kicher … ihr habt keine Ahnung, wen ihr da mit euch herumschleppt …'],['Herz des Moores','Träger der Morgenklinge. Der Nebel weicht. Nimm meinen Segen.']]);G.flashW=.8;SND.cap();heart('moor');await wait(.6);G.pillar=null;
+  await dlg([['Nagaron','Gut gemacht, junge Leute. Ich bin Nagaron. Ich hüte dieses Moor seit dreihundert Jahren.'],['Nagaron','Zwei Herzen tragen nun ihren Segen in deiner Klinge. Das dritte wartet im Frostkamm, hinter dem Sandmeer im Süden.'],['Nagaron','Und du, Kind mit dem rosa Haar … hüte dich. Der Feind sucht nicht nur die Herzen. Er sucht auch dich.'],['Mira','Mich? Was will denn ein Dämonenkönig von einer Händlerin?'],['Nagaron','Das, junge Seherin, wirst du bald erfahren.']])});
+ giveItem('held','morgen_moor');const mm=NPCm('mira');if(mm)mm.hide=false;done(I,550)};
+// ---------------- TEIL 5 ----------------
+SC['Eisenwacht']=async(fresh)=>{const I=MI('Eisenwacht');if(fresh)at(216,172,Math.PI/2);const bj=NPCm('bjarne');
+ await cut(async()=>{camShot(TX(215),TX(184),Math.PI/2+.2,180,80,20,0);await wait(.5);G.shake=4;await dlg([['Jarl Bjarne','Wölfe an allen Toren! Haltet die Palisade!'],['Shimo','Ich halte das Osttor. Kein Wolf kommt an mir vorbei.'],['Jarl Bjarne','Du da, Fremder mit der Klinge! Hilf Shimo, oder friere mit uns!']])});
+ useHero('shimo');at(226,188,0);banner('SHIMO','Halte das Osttor von Eisenwacht','#8fe2ff');const hh=heroAlly('held',TX(220),TX(188));
+ await waves([[[['schneewolf','frost'],10,236,188,40]],[[['schneewolf','eisgeist'],12,236,186,40],[['frost','frost'],6,215,170,30]],[[['schneewolf','schneewolf','eisgeist'],14,238,190,40]]],'Halte das Osttor');
+ const cp=capt('Rudelführer Grauzahn','schneewolf',234,188,5200,22,'#cfe6ff');obj('Besiege Rudelführer Grauzahn',cp.x,cp.y);await until(()=>cp.dead);clearFoes();
+ killU(hh,hh.x,hh.y,false);useHero('held');at(222,188,Math.PI);
+ await cut(async()=>{villager('bjarne',218,186);faceTo(bj,pl.x,pl.y);camShot(TX(220),TX(187),Math.PI/2+.5,100,40,20,0);
+  await dlg([['Jarl Bjarne','Bei meinem Bart, das war knapp! Eisenwacht steht noch.'],['Shimo','Ich bin Shimo. Meine Arme sind aus ewigem Eis. Ein Fluch des Frostherzens, sagen manche. Ich sage: ein Geschenk.'],['Shimo','Du suchst das Herz des Frosts? Dann musst du über den Gipfelpfad. Und dort wartet etwas Größeres als Wölfe.'],['Jarl Bjarne','Ruh dich aus, Fremder. Dann sprich mit mir, und ich öffne dir das Gipfeltor.']])});
+ done(I,350)};
+SC['Der Gipfelpfad']=async(fresh)=>{const I=MI('Der Gipfelpfad');if(fresh)at(218,192,0);
+ await dlg([['Jarl Bjarne','Das Gipfeltor ist offen. Shimo geht mit dir.'],['Jarl Bjarne','Und nimm das hier. Eine Axt aus Eisenwacht, falls dir dein Schwert mal zu leicht wird.']]);giveItem('held','fellhelm2');
+ heroAlly('shimo',pl.x+30,pl.y);await goTo(TX(244),TX(198),60,'Steig mit Shimo den Gipfelpfad hinauf');horde(['schneewolf','eisgeist','frost'],14,TX(256),TX(206),60,{hunt:1});
+ await goTo(TX(258),TX(206),60,'Kämpfe dich zum Gipfel');
+ await cut(async()=>{camShot(TX(268),TX(210),0,160,70,40,0);G.shake=14;G.flashW=.6;SND.warn();await wait(1);await dlg([['Shimo','Eine Lawine … nein. Das ist ein Heulen!'],['Shimo','Frostfang. Der Wolf des ewigen Winters. Er hat diesen Berg nie verlassen … bis jetzt.']])});
+ const B=bossAt('frostfang',TX(270),TX(208),10500);obj('Besiege Frostfang');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await dlg([['Shimo','Er war nicht besessen. Er wurde … gerufen. Vom Schrein auf dem Gipfel.']]);done(I,450)};
+SC['Herz des Frosts']=async(fresh)=>{const I=MI('Herz des Frosts');if(fresh)at(270,212,0);if(!G.units.some(u=>u.hero==='shimo'&&!u.dead))heroAlly('shimo',pl.x+30,pl.y);
+ await goTo(TX(284),TX(222),45,'Erklimm den Eisschrein');
+ await cut(async()=>{camShot(TX(288),TX(224),-Math.PI/2,130,50,40,0);await wait(.5);await dlg([['Hrimgar','Noch ein Schritt, kleiner Klingenträger, und ich mache Eis aus dir.'],['Hrimgar','Skarab und Morla waren Schwächlinge. Ich bin Hrimgar, und dieses Herz gehört schon fast dem Meister.']])});
+ const B=bossAt('hrimgar',TX(288),TX(222),13500);obj('Besiege Hrimgar, den Schattenfürsten des Frosts');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await cut(async()=>{at(288,230,-Math.PI/2);camShot(TX(288),TX(226),-Math.PI/2+.2,100,46,30,0);await dlg([['Hrimgar','Hah … hahaha … ihr Narren. Drei Herzen habt ihr gerettet …'],['Hrimgar','… doch der Meister hat längst etwas Besseres gefunden. Das Blut der Seherin. Genau jetzt, in eurem kleinen Dorf.'],['Shimo','Seherin …? Er meint deine Freundin!']]);
+  G.pillar={x:TX(288)+8,y:TX(226),r:26,col:'#8fe2ff',a:.3};await wait(.4);await dlg([['Herz des Frosts','Träger der Morgenklinge. Eile. Nimm meinen Segen … und eile.']]);G.flashW=.8;SND.cap();heart('frost');await wait(.5);G.pillar=null});
+ giveItem('held','morgen_frost');
+ await comic([{a:'raub',t:'Zur selben Zeit in Wiesental. Ein Schatten fiel über das Dorf.'},{a:'raub',t:'Und als er sich hob, war Mira verschwunden.'}]);
+ done(I,600)};
+// ---------------- TEIL 6 ----------------
+SC['Wiesental brennt']=async(fresh)=>{const I=MI('Wiesental brennt');setStoryTime('red');at(90,92,Math.PI/2);for(const n of G.npcs)n.hide=true;
+ G.fires=[[TX(79),TX(105)],[TX(98),TX(99)],[TX(101),TX(118)],[TX(77),TX(119)],[TX(85),TX(126)],[TX(99),TX(127)]];
+ await cut(async()=>{camShot(TX(90),TX(104),-Math.PI/2,200,90,10,0);await fadeTo(0,.8);await wait(.6);await dlg([['Wache Tom','Du bist zurück! Sie haben uns überrannt … und Mira … sie haben Mira geholt!'],['Wache Tom','Ein Riese aus Schatten. Er hat sie einfach … mitgenommen. Wir konnten nichts tun.'],['Wache Tom','Bitte, hilf uns zuerst. Die Leute sind noch in ihren Häusern!']])});
+ heroAlly('soldat',pl.x+20,pl.y,{hgt:36});
+ let saved=0;const P=addPicks([[80,108],[97,102],[100,121],[78,122],[86,129]],SX.door,'Dorfbewohner befreien','#ffd76b');const who=['hilde','kalle','rosa','pip','lu'];P.forEach((p,k)=>p.cb=()=>{saved++;const n=NPCm(who[k]);if(n){n.x=p.x;n.y=p.y+20;n.hide=false;n.wander=0}say(n?n.n:'Dorfbewohner','Danke! Ich dachte, ich komme hier nie raus!')});
+ await waves([[[['imp','hoellenhund'],12,90,84,40],[['imp'],6,124,112,30]],[[['imp','hoellenhund','skelett'],14,58,112,40]],[[['hoellenhund','daemonenritter','imp'],14,90,96,50]]],'Verteidige Wiesental');
+ obj('Befreie die eingeschlossenen Dorfbewohner (0/5)');await until(()=>{G.obj=`Befreie die eingeschlossenen Dorfbewohner (${saved}/5)`;return saved>=5});
+ const cp=capt('Schattenbote Grell','daemonenritter',90,110,6000,24,'#ff5a6a');horde(['imp','hoellenhund'],10,TX(90),TX(110),50,{hunt:1});obj('Besiege den Anführer am Brunnen',cp.x,cp.y);await until(()=>cp.dead);clearFoes();G.fires=[];
+ done(I,500)};
+SC['Brunos Geheimnis']=async(fresh)=>{const I=MI('Brunos Geheimnis');setStoryTime('night');if(fresh){at(92,110,Math.PI);G.fires=[]}for(const n of G.npcs)n.hide=n.id==='mira';
+ const bruno=villager('bruno',90,108);
+ await cut(async()=>{faceTo(bruno,pl.x,pl.y);G.plDir=Math.PI;camShot(TX(91),TX(109),-Math.PI/2+.5,90,38,18,0);await fadeTo(0,.6);
+  await dlg([['Ältester Bruno','Ich muss dir etwas gestehen. Etwas, das ich Mira nie gesagt habe.'],['Ältester Bruno','Vor tausend Jahren bannte die Seherin Mirabel den Dämonenkönig zusammen mit dem ersten Helden. Mira ist ihre Nachfahrin.'],['Ältester Bruno','In ihrem Blut schläft dieselbe Macht. Die einzige Macht, die einen Dämonenkönig bannen kann. Darum hat er sie geholt.'],['Ältester Bruno','Mit ihrem Blut will er das Herz der Glut an sich binden. Dann kann ihn nichts mehr verletzen.'],['Ältester Bruno','Seine Festung liegt im Aschenland, hinter einer Barriere, die kein Lebender durchbricht. Nur das Licht des ersten Helden selbst.'],['Ältester Bruno','Und der erste Held … ist seit tausend Jahren tot.'],['Ältester Bruno','Aber das Tor im Schrein … Mira sagte, es atmet. Vielleicht ist es kein Tor in einen anderen Ort. Vielleicht ist es ein Tor in eine andere Zeit.']])});
+ await goTo(TX(150),TX(28),60,'Geh zum Tor der Zeit im Schrein des Nordwalds');
+ horde(['imp','hoellenhund','skelett'],16,TX(140),TX(36),70,{hunt:1});
+ await goTo(TX(150),TX(26),60,'Erreiche das Tor der Zeit');clearFoes();
+ await cut(async()=>{at(150,26,-Math.PI/2);camShot(G.gate[0],G.gate[1],-Math.PI/2+.001,120,60,50,0);G.gateGlow=1;await wait(1);
+  await dlg([['???','… Träger der Morgenklinge. Drei Herzen haben dich gesegnet. Das Tor erkennt dich.'],['???','Geh. Doch wisse: Was du in der Vergangenheit tust, kannst du nicht ungeschehen machen.']]);G.flashW=1;await wait(.4);await fadeTo(1,.6)});
+ done(I,400)};
+// ---------------- TEIL 7 ----------------
+SC['Vor tausend Jahren']=async(fresh)=>{const I=MI('Vor tausend Jahren');setStoryTime('past');at(90,118,-Math.PI/2);G.fade=1;
+ const sb=addNPC('mirabel',92,113),al=addNPC('aldo',86,113);for(let i=0;i<10;i++){const [x,y]=freeSpot(pl.x,pl.y-30,90);spawnU(1,null,x,y,{follow:1})}
+ await cut(async()=>{camShot(TX(90),TX(115),-Math.PI/2+.6,130,50,20,0);await fadeTo(0,1);faceTo(sb,pl.x,pl.y);faceTo(al,pl.x,pl.y);
+  await dlg([['Hauptmann Aldo','Halt! Wer bist du? Woher kommst du mitten in unser Lager?'],['Seherin Mirabel','Senk dein Schwert, Aldo. Sieh dir seine Klinge an.'],['Seherin Mirabel','Die Klinge des Morgens … mit dem Segen von drei Herzen. Ich habe sie in meinen Visionen gesehen. In den Händen eines Fremden aus einer fernen Zeit.'],['Hauptmann Aldo','Visionen hin oder her … die Imps greifen wieder an! Wenn er kämpfen kann, soll er es beweisen!']])});
+ await waves([[[['imp','imp','hoellenhund'],14,90,96,50]],[[['imp','hoellenhund','skelett'],16,108,112,50]],[[['hoellenhund','skelett','imp'],18,72,108,50]]],'Verteidige das Heerlager');
+ const cp=capt('Höllenritter Asch','daemonenritter',90,100,5600,24,'#ff7a5a');obj('Besiege Höllenritter Asch',cp.x,cp.y);await until(()=>cp.dead);clearFoes();
+ await dlg([['Hauptmann Aldo','Bei allen Ahnen … du kämpfst wie zehn Männer.'],['Seherin Mirabel','Komm. Es gibt jemanden, den du kennenlernen musst.']]);done(I,400)};
+SC['Der erste Held']=async(fresh)=>{const I=MI('Der erste Held');setStoryTime('past');const sb=NPCm('mirabel')||addNPC('mirabel',92,113),al=NPCm('aldo')||addNPC('aldo',86,113);
+ await cut(async()=>{at(90,112,-Math.PI/2);villager('mirabel',92,108);camShot(TX(90),TX(108),-Math.PI/2+.5,110,44,22,0);await wait(.4);
+  await dlg([['Der erste Held','Mirabel sagt, du kommst aus einer Zeit nach mir. Dann hält mein Siegel nicht ewig, oder?'],['Seherin Mirabel','Kein Siegel hält ewig. Tausend Jahre, vielleicht. Bannen ist nicht Vernichten.'],['Seherin Mirabel','Vernichten kann ihn nur beides zusammen: das Licht des Helden und das Blut der Seherin. Doch dafür sind wir hier zu schwach.'],['Der erste Held','Dann tun wir heute, was wir können. Und morgen tut er, was wir nicht konnten.'],['Hauptmann Aldo','Sie kommen! Ein Nachtangriff von allen Seiten!']])});
+ useHero('urheld');banner('DER ERSTE HELD','Halte das Lager in der Nacht','#ffd76b');setStoryTime('night');
+ await waves([[[['imp','hoellenhund'],16,90,94,50],[['skelett'],8,112,118,40]],[[['hoellenhund','daemonenritter','imp'],18,70,112,50]],[[['imp','hoellenhund','skelett','daemonenritter'],22,90,130,60]]],'Halte das Heerlager');
+ const cp=capt('Höllenritter Gram','daemonenritter',90,96,5800,24,'#ff7a5a');obj('Besiege Höllenritter Gram',cp.x,cp.y);await until(()=>cp.dead);clearFoes();setStoryTime('past');
+ useHero('held');at(90,110,-Math.PI/2);
+ await cut(async()=>{villager('mirabel',92,107);camShot(TX(90),TX(108),-Math.PI/2+.4,100,42,22,0);
+  await dlg([['Der erste Held','Halt deine Klinge hoch. Ich gebe ihr mein Licht. Ich brauche es nicht mehr lange.']]);G.pillar={x:pl.x,y:pl.y,r:22,col:'#fff4c0',a:.4};G.flashW=1;SND.cap();await wait(.8);G.pillar=null;
+  await dlg([['Seherin Mirabel','Und das hier gibst du meiner Nachfahrin. Meinen Stab. Wenn die Zeit kommt, wird sie wissen, was zu tun ist.'],['Der erste Held','Geh zurück in deine Zeit, Freund. Und beende, was wir begonnen haben.']])});
+ giveItem('held','morgen_licht');giveItem('mira_s','siegelstab',true);await comic([{a:'licht',t:'Der erste Held gab der Klinge sein Licht. Tausend Jahre bevor sie es brauchen würde.'}]);done(I,600)};
+SC['Zurück durch das Tor']=async(fresh)=>{const I=MI('Zurück durch das Tor');setStoryTime('past');if(fresh)at(90,104,-Math.PI/2);
+ await dlg([['Seherin Mirabel','Ich öffne dir das Tor beim Schrein ein letztes Mal. Doch der Weg dorthin ist voller Feinde.']]);
+ horde(['imp','hoellenhund','skelett'],18,TX(90),TX(66),70,{hunt:1});await goTo(TX(110),TX(56),70,'Kämpfe dich zum Schrein im Nordwald');
+ horde(['imp','hoellenhund','daemonenritter'],18,TX(130),TX(44),70,{hunt:1});await goTo(TX(146),TX(30),60,'Erreiche den Schrein');clearFoes();
+ await cut(async()=>{at(150,28,-Math.PI/2);camShot(TX(150),TX(18),-Math.PI/2,140,60,40,0);G.pillar={x:G.gate[0],y:G.gate[1],r:30,col:'#7ab4ff',a:.3};await wait(.8);
+  await dlg([['???','Ein Fremder … mit dem Geruch einer anderen Zeit. Interessant. Ich werde mich an dich erinnern.'],['???','In tausend Jahren.']]);G.flashW=1;G.shake=10;await wait(.6);await fadeTo(1,.6);G.pillar=null});
+ await comic([{a:'zeittor',t:'Das Tor schloss sich hinter ihm. Tausend Jahre vergingen in einem Atemzug.'}]);done(I,400)};
+// ---------------- TEIL 8 ----------------
+SC['Die Barriere']=async(fresh)=>{const I=MI('Die Barriere');setStoryTime('day');at(252,84,-Math.PI/2);
+ await goTo(TX(255),TX(70),45,'Reise zur Barriere im Norden des Sandmeers');
+ await cut(async()=>{camShot(TX(256),TX(66),-Math.PI/2,120,50,40,0);await wait(.5);await dlg([['Sahir','Da bist du ja! Ich habe gesehen, wie du aus dem Licht im Norden gekommen bist. Wo warst du?'],['Sahir','… Tausend Jahre in der Vergangenheit? Klar. Natürlich. Warum auch nicht.']]);
+  G.pillar={x:pl.x,y:pl.y,r:20,col:'#fff4c0',a:.4};await wait(.5);G.flashW=1;G.shake=12;SND.warn();openBarrier();await wait(.6);G.pillar=null;await dlg([['Sahir','Die Barriere … sie zerbricht! Das Licht deiner Klinge hat sie durchschnitten!']])});
+ heroAlly('sahir',pl.x+30,pl.y);setStoryTime('red');horde(['imp','hoellenhund','magma'],16,TX(258),TX(52),60,{hunt:1});
+ await goTo(TX(258),TX(48),60,'Dringe ins Aschenland vor');await until(()=>G.nE<=3);done(I,400)};
+SC['Herz der Glut']=async(fresh)=>{const I=MI('Herz der Glut');setStoryTime('red');if(fresh){at(256,52,Math.PI);openBarrier();heroAlly('sahir',pl.x+30,pl.y)}
+ horde(['magma','lavafledermaus','imp'],16,TX(246),TX(38),60,{hunt:1});await goTo(TX(244),TX(36),50,'Finde das Herz der Glut in der Aschenschmiede');
+ await cut(async()=>{camShot(TX(240),TX(32),Math.PI,140,60,40,0);await wait(.5);await dlg([['Varkon','Klingenträger. Ich habe dein Kommen gerochen. Nach Sand, Moor und Frost.'],['Varkon','Ich bin Varkon, Schmied des Meisters. Ich habe seine Rüstung geschmiedet und seinen Thron. Und jetzt schmiede ich deinen Sarg.']])});
+ const B=bossAt('varkon_b',TX(240),TX(30),15500);obj('Besiege Varkon, den Schattenfürsten der Glut');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await cut(async()=>{at(240,36,-Math.PI/2);camShot(TX(240),TX(33),-Math.PI/2+.2,100,46,30,0);G.pillar={x:TX(240),y:TX(32),r:26,col:'#ff5a2a',a:.3};await wait(.4);
+  await dlg([['Herz der Glut','Das letzte Herz … frei, bevor er mich binden konnte. Nimm meine Kraft, Träger. Er hat jetzt nur noch das Blut der Seherin.']]);G.flashW=.8;SND.cap();heart('glut');await wait(.5);G.pillar=null});
+ giveItem('held','obsidianstiefel',true);done(I,600)};
+SC['Vor den Toren']=async(fresh)=>{const I=MI('Vor den Toren');setStoryTime('red');if(fresh){at(258,46,0);openBarrier()}clearAllies();
+ const camp=[['sahir',254,42],['shimo',262,42],['nagaron',258,38]];
+ await cut(async()=>{at(258,46,-Math.PI/2);const A=camp.map(([id,x,y])=>heroAlly(id,TX(x),TX(y),{follow:0}));for(let i=0;i<8;i++)spawnU(1,null,TX(250+i*2),TX(50),{follow:0});
+  villager('tom',255,48);villager('kalle',261,48);camShot(TX(258),TX(44),-Math.PI/2+.4,150,56,20,0);await fadeTo(0,.6);
+  await dlg([['Sahir','Die Oase schickt ihre Reiter. Alle, die noch im Sattel sitzen.'],['Shimo','Eisenwacht schickt seine Krieger. Und mich.'],['Nagaron','Und das Moor schickt einen alten Mann, der zu stur zum Sterben ist.'],['Wache Tom','Und Wiesental schickt … na ja, mich. Und Kalle.'],['Schmied Kalle','Ich hab dir was mitgebracht. Geschmiedet aus Varkons eigenem Erz. Passt wie angegossen, wetten?']]);
+  giveItem('held','sonnenpanzer',true);giveItem('held','sonnenhelm',true);banner('NEUE AUSRÜSTUNG','Sonnenhelm & Sonnenpanzer · Drücke I zum Anlegen','#8fe2ff');
+  await dlg([['Shimo','Die Schattenfeste liegt da vorne. Hohe Mauern, ein Tor aus Eisen, und dahinter … er.'],['Sahir','Wir brechen das Tor auf. Du holst Mira. Und dann zeigst du diesem Dämonenkönig, wie die Sonne aufgeht.']])});
+ await comic([{a:'feste',t:'Am nächsten Morgen marschierte ein Heer, wie es das Land seit tausend Jahren nicht gesehen hatte.'}]);done(I,300)};
+// ---------------- TEIL 9 ----------------
+SC['Sturm auf die Schattenfeste']=async(fresh)=>{const I=MI('Sturm auf die Schattenfeste');setStoryTime('red');at(262,46,-Math.PI/2);openBarrier();
+ heroAlly('sahir',TX(258),TX(46));heroAlly('shimo',TX(266),TX(46));heroAlly('nagaron',TX(262),TX(50));for(let i=0;i<10;i++){const [x,y]=freeSpot(pl.x,pl.y+30,70);spawnU(1,null,x,y,{follow:1})}
+ horde(['imp','hoellenhund','daemonenritter'],18,TX(268),TX(36),60,{hunt:1});await goTo(TX(272),TX(34),60,'Stürme mit dem Heer zum Tor der Schattenfeste');
+ await waves([[[['imp','hoellenhund','daemonenritter'],16,276,30,40]],[[['daemonenritter','skelett','imp'],18,276,30,40]]],'Brich durch die Torwache');
+ const cp=capt('Torwächter Brakk','daemonenritter',276,31,8000,26,'#ff5a6a');say('Torwächter Brakk','Dieses Tor fällt nie!');obj('Besiege Torwächter Brakk',cp.x,cp.y);await until(()=>cp.dead);clearFoes();
+ await cut(async()=>{camShot(TX(276),TX(29),-Math.PI/2,120,50,30,0);G.shake=14;SND.warn();await wait(.8);await dlg([['Shimo','Das Tor ist offen! Rein mit euch!']])});
+ done(I,500)};
+SC['Der Hof der Schatten']=async(fresh)=>{const I=MI('Der Hof der Schatten');setStoryTime('red');if(fresh){openBarrier();at(277,26,-Math.PI/2)}
+ await dlg([['Sahir','Geh nur vor zur Burg! Ich halte den Hof. Keiner von denen kommt an mir vorbei!']]);
+ useHero('sahir');at(277,24,-Math.PI/2);banner('SAHIR','Halte den Hof der Schattenfeste','#ffb84a');
+ await waves([[[['imp','hoellenhund'],18,270,20,30],[['skelett'],8,284,22,30]],[[['daemonenritter','imp','hoellenhund'],20,277,18,40]],[[['hoellenhund','daemonenritter','magma','imp'],24,277,20,50]]],'Halte den Hof');
+ clearFoes();await dlg([['Sahir','Ha! Das war der ganze Hof? Na dann … jetzt bist du dran, Freund. Hol sie da raus.']]);
+ useHero('held');at(276,18,-Math.PI/2);done(I,400)};
+SC['Der Schwarze Ritter']=async(fresh)=>{const I=MI('Der Schwarze Ritter');setStoryTime('red');if(fresh){openBarrier();at(276,20,-Math.PI/2)}
+ await goTo(TX(276),TX(16),30,'Betritt die innere Burg');
+ await cut(async()=>{at(276,14,-Math.PI/2);camShot(TX(276),TX(10),-Math.PI/2,130,56,40,0);await wait(.6);await dlg([['Der Schwarze Ritter','…'],['Der Schwarze Ritter','Niemand betritt den Thronsaal. Nicht in tausend Jahren. Nicht heute.']])});
+ const B=bossAt('schwarzritter',TX(276),TX(10),17500);obj('Besiege den Schwarzen Ritter');await until(()=>B.dead);G.bossU=null;clearFoes();
+ await cut(async()=>{camShot(TX(276),TX(11),-Math.PI/2+.3,90,36,18,0);await comic([{a:'ritter',t:'Der schwarze Helm zerbrach. Darunter war ein altes, müdes Gesicht.'}]);
+  await dlg([['Hauptmann Aldo','Diese Klinge … ich kenne sie. Du warst … im Lager. Vor so langer Zeit.'],['Hauptmann Aldo','Nach der Schlacht hat mich die Finsternis geholt. Tausend Jahre in dieser Rüstung … ein Diener ohne Willen.'],['Hauptmann Aldo','Er ist im Thronsaal. Mit der Seherin. Ihr Blut … er hat schon damit begonnen.'],['Hauptmann Aldo','Rette sie, Freund. Und dann … sag Mirabel, dass ich bis zum Ende gekämpft habe.']]);await fadeTo(1,.8)});
+ done(I,600)};
+// ---------------- TEIL 10 ----------------
+SC['Der Thronsaal']=async(fresh)=>{const I=MI('Der Thronsaal');setStoryTime('red');openBarrier();at(276,14,-Math.PI/2);G.fade=1;
+ const mira=NPCm('mira');if(mira){mira.hide=false;mira.x=TX(276)+8;mira.y=TX(6);mira.wander=0;mira.look=Math.PI/2;mira.talk=null}G.chain={x:TX(276)+8,y:TX(6)};
+ await cut(async()=>{camShot(TX(276),TX(9),-Math.PI/2,150,60,40,0);await fadeTo(0,1);await wait(.4);
+  await dlg([['Mira','Du bist gekommen …! Ich wusste es. Pass auf, er ist …']]);G.flashR=.6;G.shake=10;SND.warn();const B0=bossAt('morvath1',TX(276),TX(10),21000);B0.mv.busy=3;camShot(TX(276),TX(10),-Math.PI/2,190,70,60,2);await wait(1);
+  await dlg([['???','Der Klingenträger. Ich habe auf dich gewartet. Seit tausend Jahren, genau genommen.'],['???','Du erinnerst dich nicht? Am Schrein. Ein Fremder mit dem Geruch einer anderen Zeit. Ich habe dich nie vergessen.'],['Morvath','Mein Name ist Morvath. Ich bin, was euer Siegel tausend Jahre lang genährt hat: jeder Zorn, jede Angst, jeder Hass dieses Landes.'],['Morvath','Der alte König war nur meine Schale. Jetzt bin ich frei. Und mit dem Blut der Seherin werde ich unsterblich.'],['Mira','Niemals! Gib ihm alles, was du hast!']])});
+ const B=G.bossU;B.mv.busy=1;B.floor=B.max*.15;obj('Besiege Morvath, den Dämonenkönig');await until(()=>B.hp<=B.max*.15+1||B.dead);B.mv.busy=99;
+ await cut(async()=>{camShot(TX(276),TX(10),-Math.PI/2,170,60,50,0);G.shake=16;G.flashR=.8;SND.warn();await dlg([['Morvath','Genug gespielt. Sieh nun meine wahre Gestalt!']]);await wait(.6);killU(B,B.x,B.y,false);G.bossU=null;await fadeTo(1,.5)});
+ done(I,600)};
+SC['Die wahre Gestalt']=async(fresh)=>{const I=MI('Die wahre Gestalt');setStoryTime('red');openBarrier();if(fresh)at(276,14,-Math.PI/2);G.fade=1;
+ const mira=NPCm('mira');if(mira)mira.hide=true;G.chain=null;const ma=miraAlly(TX(272),TX(12));
+ await cut(async()=>{camShot(TX(276),TX(10),-Math.PI/2,190,70,60,0);await fadeTo(0,.8);const B0=bossAt('morvath2',TX(276),TX(9),26000);B0.mv.busy=3;G.shake=12;await wait(.6);
+  await dlg([['Mira','Die Ketten sind weg! Er hat sie bei der Verwandlung gesprengt!'],['Mira','Und … ich spüre etwas. Den Stab, den du mitgebracht hast. Er ruft mich.'],['Morvath','Die kleine Seherin. Dein Blut ist ohnehin schon meins!'],['Mira','Mein Blut gehört mir! Zusammen, jetzt!']])});
+ const B=G.bossU;B.mv.busy=1;B.floor=B.max*.1;obj('Besiege Morvaths wahre Gestalt');await until(()=>B.hp<=B.max*.1+1||B.dead);B.mv.busy=99;
+ await cut(async()=>{camShot(TX(276),TX(11),-Math.PI/2,160,56,40,0);G.flashW=.8;G.shake=14;await dlg([['Mira','Jetzt! Licht und Blut, so wie Mirabel es gesagt hat!'],['Morvath','Nein … NEIN! Ihr seid nichts als Staub in tausend Jahren!'],['Mira','Dann sind wir eben Staub. Aber freier Staub!']]);
+  G.pillar={x:B.x,y:B.y,r:50,col:'#fff4c0',a:.5};G.sealFx=1;G.flashW=1;SND.cap();await wait(1.6);G.shake=20;G.flashW=1;await wait(.8);killU(B,B.x,B.y,false);G.bossU=null;G.pillar=null;G.sealFx=0;await fadeTo(1,1)});
+ clearAllies();await comic([{a:'lichtblut',t:'Licht und Blut. Was tausend Jahre nur gebannt war, verging in einem einzigen Augenblick.'},{a:'lichtblut',t:'Morvath, der letzte Dämonenkönig, war nicht mehr.'}]);
+ done(I,1500)};
+SC['Ein Fest für Wiesental']=async(fresh)=>{const I=MI('Ein Fest für Wiesental');setStoryTime('day');at(90,106,-Math.PI/2);G.fires=[];
+ const L=[['mira',92,108],['bruno',88,110],['hilde',94,112],['kalle',86,113],['tom',92,113],['rosa',88,114],['pip',90,115],['lu',96,110]];for(const [id,x,y] of L)villager(id,x,y);
+ const as=[['sahir',84,108],['shimo',97,107],['nagaron',90,104]].map(([id,x,y])=>heroAlly(id,TX(x),TX(y),{follow:0}));
+ await cut(async()=>{G.fade=1;camShot(TX(90),TX(110),-Math.PI/2+.6,200,90,10,0);await fadeTo(0,1.4);camShot(TX(90),TX(110),-Math.PI/2+.2,120,46,18,3);await wait(2);
+  const mira=NPCm('mira'),bruno=NPCm('bruno');faceTo(mira,pl.x,pl.y);faceTo(bruno,pl.x,pl.y);G.plDir=Math.PI/2;
+  await dlg([['Ältester Bruno','Der Mond ist wieder weiß. Die Tiere sind friedlich. Und das Tor im Schrein schläft.'],['Ältester Bruno','Ich habe die alte Legende neu geschrieben. Diesmal mit dem richtigen Ende.'],['Sahir','Die Sultanin lässt ausrichten: Das Fest in Kamra ist das größte seit dreihundert Jahren. Du bist eingeladen. Pflicht!'],['Shimo','Meine Arme sind noch immer aus Eis. Gut so. Ich habe mich an sie gewöhnt.'],['Nagaron','Ich gehe zurück in mein Moor. Ruhe. Endlich wieder Ruhe.'],['Pip','Wenn ich groß bin, werde ich auch ein Held! Genau wie du!'],['Mira','Weißt du … ich dachte immer, ich bin nur eine Händlerin mit zu vielen Gerüchten.'],['Mira','Aber vielleicht ist das hier unsere eigene Legende. Und die schreiben wir zusammen weiter.'],['Mira','Danke. Für alles. Und jetzt komm, alle warten auf dich!']])});
+ await comic([{a:'fest',t:'In dieser Nacht feierte ganz Wiesental. Und zum ersten Mal seit tausend Jahren hatte niemand Angst vor der Dunkelheit.'},{a:'frieden',t:'Die Herzen schlafen wieder. Das Land ist frei.'},{a:'ende',t:'Danke fürs Spielen!',big:'ENDE DER HELDENGESCHICHTE'}]);
+ for(const u of as)killU(u,u.x,u.y,false);giveItem('held','sonnenstiefel',true);giveItem('mira_s','engelskleid',true);done(I,2000)};
+for(let i=5;i<MISSIONS.length;i++)SCRIPTS[i]=SC[MISSIONS[i].n];
+NPC_DEF.ibo={n:'Karawanenführer Ibo',look:{race:'mensch',hair:'#2a1a10',outfit:'#d8b070',style:0}};
 
 // =====================================================================
 // ZUKUNFT · Menschen-Sprites (detaillierter Pixel-Stil, echte Proportionen)
