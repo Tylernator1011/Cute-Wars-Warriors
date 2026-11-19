@@ -1,6 +1,6 @@
 {
-  "version": 10,
-  "size": 411974,
-  "sha256": "a8a13a91b7b00d9e3670c3de93b437ec7021fd6b9f7587ff5d59528bbabc85dc",
-  "notes": "Nicht freigeschaltete Krieger sind jetzt schwarze Silhouetten mit ??? als Name. Außerdem ist ein Anzeigefehler im Frontlinie-Modus behoben."
+  "version": 11,
+  "size": 412219,
+  "sha256": "d94152a73eb2b7c0e8d674281aaf4996a7de168d9179265babff547eb34ea4ef",
+  "notes": "Krustus hat jetzt normale Arme und bessere Angriffsbewegungen."
 }
