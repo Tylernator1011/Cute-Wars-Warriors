@@ -1,6 +1,6 @@
 {
-  "version": 24,
-  "size": 698528,
-  "sha256": "6bef0748497a4db13288fc628af0318a01ed1cf4689ab9f5507b9ea47cef2781",
-  "notes": "Größen korrigiert: Figuren haben jetzt echte Menschengröße im Verhältnis zu Türen, Fenstern, Autos und Häusern"
+  "version": 25,
+  "size": 703360,
+  "sha256": "7fb7ff3b717e517d5338f16f748a75a5096e3bdee45654c88f49794ee148bb1b",
+  "notes": "Mehr Animationen: langsameres Gehen, eigene Renn-Animation, Atmen, Rückstoß beim Schießen, Nachladen, Granatenwurf, Cyber-Schlag, Ducken beim Ausweichen, Zusammensacken beim Sterben, Schrittgeräusche"
 }
