@@ -1,6 +1,6 @@
 {
-  "version": 13,
-  "size": 434474,
-  "sha256": "c7e5d464fa130954088c3b182de0a311a6e14162c5a95b8c12ccc0165b978cba",
-  "notes": "Krieger drehen sich beim Laufen nicht mehr. Jedes Level startet jetzt wieder bei null."
+  "version": 14,
+  "size": 435153,
+  "sha256": "355c4ab450b9265c044df9c3e488e4e095eecf65c50da7fa889d2d3737997699",
+  "notes": "Man kann nach Sprüngen nicht mehr in Wänden feststecken."
 }
