@@ -1,6 +1,6 @@
 {
-  "version": 15,
-  "size": 498722,
-  "sha256": "e1ea3537de3b24974c601180cc3e7dd76d8f583eb52d0142fdce3eb762bc3255",
-  "notes": "Neu: Story-Modus Kapitel 1 – Der rote Mond. Prolog in der Vergangenheit, das Dorf Wiesental mit Mira und vielen NPCs, 5 Missionen mit Tutorial, Cutscenes und Comic-Bildern."
+  "version": 16,
+  "size": 510729,
+  "sha256": "cd136caf208b1b09ccf5120b24f50ee8b5d9fbf326a158eb452678dbb2ceb153",
+  "notes": "Story-Modus: keine Stufen und Upgrades mehr, sondern Ausrüstung. Held und Mira haben eigene Ausrüstung, der Held kann 5 Waffenarten mit eigenen Angriffen nutzen, Mira 4 Stäbe. Truhen in der Welt und Kalles Schmiede."
 }
