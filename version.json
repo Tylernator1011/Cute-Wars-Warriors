@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "size": 412219,
-  "sha256": "d94152a73eb2b7c0e8d674281aaf4996a7de168d9179265babff547eb34ea4ef",
-  "notes": "Krustus hat jetzt normale Arme und bessere Angriffsbewegungen."
+  "version": 12,
+  "size": 434602,
+  "sha256": "cfa3b44dd8ef55b0b149859dbe8ef21f3a7947e48702af0391458b540e5db04e",
+  "notes": "Neu: Shimo, Nagaron, Nagezahn, Eisenbart und Donnerhuf mit eigenen Pixel-Modellen."
 }
