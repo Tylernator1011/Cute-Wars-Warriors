@@ -1,6 +1,6 @@
 {
-  "version": 9,
-  "size": 411286,
-  "sha256": "b39e167c319b9244cc1d0a322d106ea69e7ceaff50d4159f0d77014ae5ac998e",
-  "notes": "Neue Freischalt-Regeln: Jeder Krieger kostet jetzt entweder nur Münzen oder eine Aufgabe und Münzen. Bereits freigeschaltete Krieger bleiben erhalten."
+  "version": 10,
+  "size": 411974,
+  "sha256": "a8a13a91b7b00d9e3670c3de93b437ec7021fd6b9f7587ff5d59528bbabc85dc",
+  "notes": "Nicht freigeschaltete Krieger sind jetzt schwarze Silhouetten mit ??? als Name. Außerdem ist ein Anzeigefehler im Frontlinie-Modus behoben."
 }
