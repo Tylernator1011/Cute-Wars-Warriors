@@ -111,7 +111,7 @@ button:disabled{background:#4a3a5e;color:#8b7a9e;box-shadow:none;cursor:not-allo
 <div id="scr-end" class="screen dim hidden"><h2 id="e-t"></h2><div class="big" id="e-r"></div><div class="panel stats" id="e-s"></div><div class="row"><button id="b-next" class="hidden">Nächstes Level</button><button id="b-again">Nochmal</button><button id="b-menu">Zum Menü</button></div></div>
 <script>
 'use strict';
-const GAME_BUILD=23;let ctx=document.createElement('canvas').getContext('2d');let parts=[];const SCALE=1;
+const GAME_BUILD=24;let ctx=document.createElement('canvas').getContext('2d');let parts=[];const SCALE=1;
 const ITEMS={kaktushelm:{col:'#5cae5a'},kaktusbrustpanzer:{col:'#5cae5a'},kaktushose:{col:'#5cae5a'},kupferhelm:{col:'#e08a4a'},kupferbrustpanzer:{col:'#e08a4a'},kupferhose:{col:'#e08a4a'},eisenhelm:{col:'#c9c4ba'},eisenbrustpanzer:{col:'#c9c4ba'},eisenhose:{col:'#c9c4ba'},goldhelm:{col:'#ffd23a'},goldbrustpanzer:{col:'#ffd23a'},goldhose:{col:'#ffd23a'},fellhelm:{col:'#c47a3a'},fellbrustpanzer:{col:'#c47a3a'},fellhose:{col:'#c47a3a'},bienenhelm:{col:'#f2c84b'},bienenbrustpanzer:{col:'#f2c84b'},bienenhose:{col:'#f2c84b'},kaktusstiefel:{col:'#5cae5a'},kupferstiefel:{col:'#e08a4a'},eisenstiefel:{col:'#c9c4ba'},goldstiefel:{col:'#ffd23a'},fellstiefel:{col:'#c47a3a'},bienenstiefel:{col:'#f2c84b'},federkrone:{col:'#c09432'},goldkettenpanzer:{col:'#c09432'},tigerfellgewand:{col:'#7e1f30'},wolkenstiefel:{col:'#c09432'},wuschelkrone:{col:'#ffd23a'},stahlhelm:{col:'#9aa6b8'},stahlbrustpanzer:{col:'#9aa6b8'},stahlhose:{col:'#9aa6b8'},stahlstiefel:{col:'#9aa6b8'},obsidianhelm:{col:'#4a3a5e'},obsidianbrustpanzer:{col:'#4a3a5e'},obsidianhose:{col:'#4a3a5e'},obsidianstiefel:{col:'#4a3a5e'},froschkrone:{col:'#5aae4a'},weltraumhelm:{col:'#d8e2f0'},weltraumbrustpanzer:{col:'#d8e2f0'},weltraumhose:{col:'#d8e2f0'},weltraumstiefel:{col:'#d8e2f0'},wuestenhelm:{col:'#efe4cc'},wuestenbrustpanzer:{col:'#efe4cc'},wuestenhose:{col:'#efe4cc'},wuestenstiefel:{col:'#efe4cc'},seraphimhelm:{col:'#f0eef8'},seraphimbrustpanzer:{col:'#f0eef8'},seraphimhose:{col:'#f0eef8'},seraphimstiefel:{col:'#f0eef8'},hoellenfuersthelm:{col:'#2a1418'},hoellenfuerstbrustpanzer:{col:'#2a1418'},hoellenfuersthose:{col:'#2a1418'},hoellenfuerststiefel:{col:'#2a1418'},erzengelhelm:{col:'#e8c860'},erzengelbrustpanzer:{col:'#e8c860'},erzengelhose:{col:'#e8c860'},erzengelstiefel:{col:'#e8c860'},donnerhelm:{col:'#4a5260'},donnerbrustpanzer:{col:'#5e6672'},donnerhose:{col:'#552a22'},donnerstiefel:{col:'#4a2a14'},berserkerhelm:{col:'#5a4838'},berserkerbrustpanzer:{col:'#5a4838'},berserkerhose:{col:'#2e2e3e'},berserkerstiefel:{col:'#4a2a14'},drachenhelm:{col:'#c8402a'},drachenbrustpanzer:{col:'#c8402a'},drachenhose:{col:'#c8402a'},drachenstiefel:{col:'#c8402a'},gottkoenighelm:{col:'#1d1730'},gottkoenigbrustpanzer:{col:'#1d1730'},gottkoenighose:{col:'#1d1730'},gottkoenigstiefel:{col:'#1d1730'},schattenwandlerhelm:{col:'#2c2446'},schattenwandlerbrustpanzer:{col:'#2c2446'},schattenwandlerhose:{col:'#2c2446'},schattenwandlerstiefel:{col:'#2c2446'}};
 const rand=(a,b)=>a+Math.random()*(b-a), randi=(a,b)=>Math.floor(rand(a,b+1));
 const clamp=(v,a,b)=>v<a?a:v>b?b:v;
@@ -2745,7 +2745,7 @@ function renderInv(){const c=pl.h.id,inv=invOf(c),box=$('inv-l');$('inv-t').text
 // =====================================================================
 // ZUKUNFT · Menschen-Sprites (detaillierter Pixel-Stil, echte Proportionen)
 // =====================================================================
-const HK=.26; // Welt-Einheiten pro Sprite-Pixel
+const HK=.19; // Welt-Einheiten pro Sprite-Pixel
 // Figuren-Bauplan. sex f/m, h = Körperhöhe in Pixeln, bw = Breite/Masse
 const HUM={
  rika:{n:'Rika',sex:'f',h:102,bw:1.05,skin:'#e6b490',eye:'#3a2a4a',lip:'#5a2a3a',hair:{k:'bob',c:'#17141e'},ear:'#ff8a2a',
@@ -3195,7 +3195,7 @@ function fBuild(){const T=fTex(),N=FW*FW,gnd=new Uint8Array(N),blk=new Uint8Arra
  // Laternen, Automaten, Müll
  for(let s=0;s<4;s++){for(let y=4;y<FW-4;y+=9){for(const xx of [s*32+.6,s*32+7.4]){const x=xx|0;if(gnd[I(x,y)]===1&&!blk[I(x,y)])W.lamps.push([xx*FCS,y*FCS+8,r()<.5?'#ffd8a0':'#a0e8ff'])}}
   for(let x=4;x<FW-4;x+=9){for(const yy of [s*32+.6,s*32+7.4]){const y=yy|0;if(gnd[I(x,y)]===1&&!blk[I(x,y)]&&(x%32>=8))W.lamps.push([x*FCS+8,yy*FCS,r()<.5?'#ffd8a0':'#a0e8ff'])}}}
- for(let i=0;i<70;i++){const x=2+r()*(FW-4)|0,y=2+r()*(FW-4)|0;if(gnd[I(x,y)]===1&&!blk[I(x,y)])W.deco.push({k:r()<.7?'trash':'vend',x:x*FCS+8,y:y*FCS+8})}
+ for(let i=0;i<70;i++){const x=2+r()*(FW-4)|0,y=2+r()*(FW-4)|0;if(gnd[I(x,y)]===1&&!blk[I(x,y)]&&!nearKey(x,y)&&!(x>30&&x<40&&y>44&&y<62))W.deco.push({k:r()<.7?'trash':'vend',x:x*FCS+8,y:y*FCS+8})}
  for(const [x,y] of [[52,50],[56,53],[45,51],[58,58],[54,47]])W.deco.push({k:'trash',x:x*FCS+4,y:y*FCS+6});
  W.fire=[[55*FCS+8,49*FCS+8],[46*FCS+8,50*FCS+8]];
  // Schilder
@@ -3332,7 +3332,7 @@ function fGun(){return FGUN[FU.P.gun]}
 function fFire(){const P=FU.P,g=fGun();if(P.rel>0||P.cd>0||FU.cut||FU.dead)return;if(P.ammo[P.gun]<=0){fReload();return}
  P.ammo[P.gun]--;P.cd=g.rate;P.aimT=1.2;P.kick=(P.kick||0)+(g.k==='shotgun'?.05:.012);P.flash=.05;
  sfx('gun',()=>{noise(g.k==='shotgun'?.18:.07,g.k==='shotgun'?.2:.11,g.k==='pistol'?2400:1600);beep(g.k==='shotgun'?70:120,.06,'square',.05,40)},.03);
- const E=FU.eye||[P.x,20,P.y],fx=Math.cos(P.yaw),fy=Math.sin(P.yaw),rx=-fy,ry=fx,mz=[P.x+fx*7+rx*5,16,P.y+fy*7+ry*5],sp=g.spr*(P.moving?1.6:1)*(FU.btnR?.5:1)*(P.sprint?2:1)+(P.spread||0);
+ const E=FU.eye||[P.x,17,P.y],fx=Math.cos(P.yaw),fy=Math.sin(P.yaw),rx=-fy,ry=fx,mz=[P.x+fx*6+rx*4,13,P.y+fy*6+ry*4],sp=g.spr*(P.moving?1.6:1)*(FU.btnR?.5:1)*(P.sprint?2:1)+(P.spread||0);
  P.spread=Math.min(.05,(P.spread||0)+g.spr*.6);FU.alarm=3;
  for(let k=0;k<(g.pel||1);k++){const a=P.yaw+rand(-sp,sp),p=P.pitch+rand(-sp,sp)*.8,cp=Math.cos(p),dx=Math.cos(a)*cp,dy=Math.sin(a)*cp,dh=Math.sin(p);
   let best=fRay(E[0],E[1],E[2],dx,dh,dy,1500),hit=null,crit=false;
@@ -3343,7 +3343,7 @@ function fFire(){const P=FU.P,g=fGun();if(P.rel>0||P.cd>0||FU.cut||FU.dead)retur
  if(P.ammo[P.gun]<=0)fReload()}
 function fReload(){const P=FU.P,g=fGun();if(P.rel>0||P.ammo[P.gun]>=g.mag)return;P.rel=g.rel;beep(300,.05,'square',.03);beep(500,.05,'square',.03,0,g.rel*.8)}
 function fSwitch(i){const sv=FSV(),g=sv.guns[i];if(!g||g===FU.P.gun)return;FU.P.gun=g;FU.P.rel=0;FU.P.cd=.3;if(FU.P.ammo[g]===undefined)FU.P.ammo[g]=FGUN[g].mag;beep(220,.04,'square',.03)}
-function fGrenade(){const P=FU.P,sv=FSV();if(P.gcd>0||FU.cut)return;if(sv.gren<=0){fNote('Keine Granaten – Rasko verkauft welche');return}sv.gren--;P.gcd=1.2;const cp=Math.cos(P.pitch+.25);FU.gren.push({x:P.x,y:P.y,h:17,vx:Math.cos(P.yaw)*cp*260,vy:Math.sin(P.yaw)*cp*260,vh:Math.sin(P.pitch+.25)*260+60,t:0})}
+function fGrenade(){const P=FU.P,sv=FSV();if(P.gcd>0||FU.cut)return;if(sv.gren<=0){fNote('Keine Granaten – Rasko verkauft welche');return}sv.gren--;P.gcd=1.2;const cp=Math.cos(P.pitch+.25);FU.gren.push({x:P.x,y:P.y,h:14,vx:Math.cos(P.yaw)*cp*260,vy:Math.sin(P.yaw)*cp*260,vh:Math.sin(P.pitch+.25)*260+60,t:0})}
 function fMelee(){const P=FU.P;if(P.mcd>0||FU.cut)return;P.mcd=.65;P.punch=.25;noise(.08,.07,900);let any=false;
  for(const u of FU.units){if(u.dead||u.team!=='e')continue;const dx=u.x-P.x,dy=u.y-P.y,d=Math.hypot(dx,dy);if(d>28+u.r)continue;const a=Math.atan2(dy,dx)-P.yaw,da=Math.abs(Math.atan2(Math.sin(a),Math.cos(a)));if(da>.9)continue;
   fHitU(u,u.d&&u.d.boss?60:48,false);any=true;if(!(u.d&&u.d.boss))fMoveU(u,dx/d*900,dy/d*900,.04)}if(any){SND.hit();FU.P.shake=3}}
@@ -3402,7 +3402,7 @@ function fUnit(u,dt){u.t+=dt;if(u.flash>0)u.flash-=dt;if(u.hpShow>0)u.hpShow-=dt
   if(!u.wp||u.stuck>.8||(flee&&!u.fleeing)){u.fleeing=flee;let tries=0;while(tries++<20){const a=flee?Math.atan2(u.y-P.y,u.x-P.x)+rand(-.6,.6):rand(0,TAU),d=rand(80,260),x=u.x+Math.cos(a)*d,y=u.y+Math.sin(a)*d,c=FU.W.gnd[(x/FCS|0)+(y/FCS|0)*FW];if((c===1||c===2)&&!fSolid(x,y,6)&&fLOS(u.x,10,u.y,x,10,y)){u.wp=[x,y];break}}u.stuck=0;if(!u.wp)u.wp=[u.x,u.y]}
   if(goTo(u.wp[0],u.wp[1],u.fleeing?110:38)){u.wp=null;u.cd=rand(.5,3);}if(!u.wp&&!u.fleeing){u.moving=0}return}
  if(u.team!=='e'||u.passive||FU.cut){u.moving=0;return}
- const d=u.d,dx=P.x-u.x,dy=P.y-u.y,dist=Math.hypot(dx,dy),los=dist<700&&fLOS(u.x,u.uh*.85,u.y,P.x,17,P.y);
+ const d=u.d,dx=P.x-u.x,dy=P.y-u.y,dist=Math.hypot(dx,dy),los=dist<700&&fLOS(u.x,u.uh*.85,u.y,P.x,15,P.y);
  if(!u.aggro&&los&&dist<(d.boss?600:340))u.aggro=true;if(!u.aggro){u.moving=0;return}
  if(d.boss)return fBoss(u,dt,dist,los);
  u.dir=Math.atan2(dy,dx);u.cd-=dt;
@@ -3417,7 +3417,7 @@ function fNav(u,dx,dy){// einfache Hindernis-Umgehung
  for(const o of [.6,-.6,1.2,-1.2,1.8,-1.8]){const a=a0+o*(u.navS||1);if(look(a))return [Math.cos(a),Math.sin(a)]}u.navS=-(u.navS||1);return [dx,dy]}
 function fEnemyShot(u,dist){const P=FU.P,d=u.d,mz=[u.x+Math.cos(u.dir)*10,u.uh*.62,u.y+Math.sin(u.dir)*10];sfx('eg',()=>{noise(.06,.06,1300);beep(140,.04,'square',.025,60)},.04);
  for(let k=0;k<(d.pel||1);k++){const pc=d.acc*(1-dist/900)*(P.moving?.72:1)*(P.sprint?.7:1)*(FU.btnR?1.1:1)*(FU.slow>0?.6:1),hit=Math.random()<pc&&P.dodge<=0;
-  const tx=P.x+(hit?0:rand(-20,20)),ty=P.y+(hit?0:rand(-20,20)),th=hit?14:rand(4,30);fTracer(mz[0],mz[1],mz[2],tx,th,ty,u.kind==='sec'?'#5ae8ff':'#ff8a5a',.45);if(hit)fHurt(d.dmg,u.x,u.y)}
+  const tx=P.x+(hit?0:rand(-20,20)),ty=P.y+(hit?0:rand(-20,20)),th=hit?12:rand(3,26);fTracer(mz[0],mz[1],mz[2],tx,th,ty,u.kind==='sec'?'#5ae8ff':'#ff8a5a',.45);if(hit)fHurt(d.dmg,u.x,u.y)}
  u.mflash=.06}
 function fBoss(u,dt,dist,los){const P=FU.P,d=u.d;u.dir=Math.atan2(P.y-u.y,P.x-u.x);u.bt=(u.bt||0)-dt;u.cd-=dt;
  if(!u.ph||u.bt<=0){const opts=dist<120?['charge','gun','rocket']:['gun','rocket','walk','gun'];u.ph=opts[Math.random()*opts.length|0];u.bt={gun:3,rocket:2.2,walk:2,charge:1.6}[u.ph];u.cd=u.ph==='charge'?.6:.4;u.n=0;
@@ -3426,7 +3426,7 @@ function fBoss(u,dt,dist,los){const P=FU.P,d=u.d;u.dir=Math.atan2(P.y-u.y,P.x-u.
  u.moving=0;
  if(u.ph==='walk'||u.ph==='gun'&&dist>220){u.moving=1;u.anim+=dt*1.4;const n=fNav(u,(P.x-u.x)/dist,(P.y-u.y)/dist);fMoveU(u,n[0]*d.spd,n[1]*d.spd,dt)}
  if(u.ph==='gun'){u.aimT=.5;if(u.cd<=0&&los){u.cd=.075;const mz=[u.x+Math.cos(u.dir+.35)*16,u.uh*.55,u.y+Math.sin(u.dir+.35)*16],hit=Math.random()<.3*(P.moving?.7:1)*(FU.slow>0?.5:1)&&P.dodge<=0;
-  fTracer(mz[0],mz[1],mz[2],P.x+(hit?0:rand(-22,22)),hit?14:rand(4,28),P.y+(hit?0:rand(-22,22)),'#ff5a3a',.6);if(hit)fHurt(3.2,u.x,u.y);sfx('mg',()=>noise(.04,.07,1100),.06);u.mflash=.05}}
+  fTracer(mz[0],mz[1],mz[2],P.x+(hit?0:rand(-22,22)),hit?12:rand(3,24),P.y+(hit?0:rand(-22,22)),'#ff5a3a',.6);if(hit)fHurt(3.2,u.x,u.y);sfx('mg',()=>noise(.04,.07,1100),.06);u.mflash=.05}}
  if(u.ph==='charge'){if(u.cd>0){u.aimT=.5}else{u.moving=1;u.anim+=dt*3;const ok=fMoveU(u,Math.cos(u.dir)*260,Math.sin(u.dir)*260,dt);if(dist<22&&!u.hitC){u.hitC=1;fHurt(28,u.x,u.y);P.shake=8}if(!ok)u.bt=0}}else u.hitC=0}
 // ---------- Skript-System ----------
 const fWait=s=>{const t=FU.t+s;return ()=>FU.t>=t};
@@ -3586,10 +3586,10 @@ function fAmb(){if(!AC)return;if(!FAMB){try{const n=AC.sampleRate*3,b=AC.createB
 function fAmbOff(){if(FAMB){FAMB.g.gain.value=0;FAMB.og.gain.value=0}}
 // ---------- Kamera & Rendern ----------
 function fCamUpdate(dt){const P=FU.P;let eye,at;
- const aimZ=FU.btnR&&!FU.cut;P.fov=lerp(P.fov,aimZ?.78:1.05,Math.min(1,dt*10));P.cdist=lerp(P.cdist,aimZ?23:32,Math.min(1,dt*10));
+ const aimZ=FU.btnR&&!FU.cut;P.fov=lerp(P.fov,aimZ?.78:1.05,Math.min(1,dt*10));P.cdist=lerp(P.cdist,aimZ?19:27,Math.min(1,dt*10));
  if(FU.cam){const c=FU.cam;c.t+=dt;let e=c.e,a=c.a;if(c.from&&c.dur){const k=Math.min(1,c.t/c.dur),s=k*k*(3-2*k);e=c.from.e.map((v,i)=>lerp(v,c.e[i],s));a=c.from.a.map((v,i)=>lerp(v,c.a[i],s))}c.ce=e;c.ca=a;eye=[e[0],e[1],e[2]];at=[a[0],a[1],a[2]]}
- else{const p=P.pitch+(P.kick||0),fx=Math.cos(P.yaw),fy=Math.sin(P.yaw),rx=-fy,ry=fx,cp=Math.cos(p),sh=aimZ?8.5:7.5;
-  const hx=P.x+rx*sh*.6,hy=P.y+ry*sh*.6,hh=19.5;let D=P.cdist;const bx=-fx*cp+rx*sh/D,by=-fy*cp+ry*sh/D,bh=-Math.sin(p),bl=Math.hypot(bx,by,bh);
+ else{const p=P.pitch+(P.kick||0),fx=Math.cos(P.yaw),fy=Math.sin(P.yaw),rx=-fy,ry=fx,cp=Math.cos(p),sh=aimZ?7:6.5;
+  const hx=P.x+rx*sh*.6,hy=P.y+ry*sh*.6,hh=17;let D=P.cdist;const bx=-fx*cp+rx*sh/D,by=-fy*cp+ry*sh/D,bh=-Math.sin(p),bl=Math.hypot(bx,by,bh);
   const t=fRay(hx,hh,hy,bx/bl,bh/bl,by/bl,D*bl+4,false);D=Math.min(D,Math.max(6,(t-4)/bl));
   eye=[P.x-fx*cp*D+rx*sh*(D/P.cdist),Math.max(3,hh-Math.sin(p)*D),P.y-fy*cp*D+ry*sh*(D/P.cdist)];at=[eye[0]+fx*cp*100,eye[1]+Math.sin(p)*100,eye[2]+fy*cp*100]}
  if(P.shake>0){const s=P.shake*.3;eye=eye.map(v=>v+rand(-s,s))}

@@ -1,6 +1,6 @@
 {
-  "version": 23,
-  "size": 698490,
-  "sha256": "e03fd368bd908f878b916fb8491c8bb6fbd0d70b7f232bb24625f9206a3275c3",
-  "notes": "Häuser passend zu den Figuren: höhere Stockwerke, Türen und Fenster in Menschengröße, doppelt so detaillierte Fassaden, Läden und Gehwege"
+  "version": 24,
+  "size": 698528,
+  "sha256": "6bef0748497a4db13288fc628af0318a01ed1cf4689ab9f5507b9ea47cef2781",
+  "notes": "Größen korrigiert: Figuren haben jetzt echte Menschengröße im Verhältnis zu Türen, Fenstern, Autos und Häusern"
 }
