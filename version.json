@@ -1,6 +1,6 @@
 {
-  "version": 22,
-  "size": 696091,
-  "sha256": "d4237eb8578013678624554ce715ed1896fe0000cf2032b41ea0798ea51b555e",
-  "notes": "Neon-Zeitalter überarbeitet: neue Hauptfigur Dex (Rika nur in Mission 1), breitere und detailliertere Figuren mit Kurven, sichtbare Waffen, passende Größen, Stadt endet nicht mehr im Nichts, Verkehr, fliegende Autos, Regen-Ambiente, keine Fähigkeitenleiste"
+  "version": 23,
+  "size": 698490,
+  "sha256": "e03fd368bd908f878b916fb8491c8bb6fbd0d70b7f232bb24625f9206a3275c3",
+  "notes": "Häuser passend zu den Figuren: höhere Stockwerke, Türen und Fenster in Menschengröße, doppelt so detaillierte Fassaden, Läden und Gehwege"
 }
