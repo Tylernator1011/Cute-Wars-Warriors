@@ -1,6 +1,6 @@
 {
-  "version": 12,
-  "size": 434602,
-  "sha256": "cfa3b44dd8ef55b0b149859dbe8ef21f3a7947e48702af0391458b540e5db04e",
-  "notes": "Neu: Shimo, Nagaron, Nagezahn, Eisenbart und Donnerhuf mit eigenen Pixel-Modellen."
+  "version": 13,
+  "size": 434474,
+  "sha256": "c7e5d464fa130954088c3b182de0a311a6e14162c5a95b8c12ccc0165b978cba",
+  "notes": "Krieger drehen sich beim Laufen nicht mehr. Jedes Level startet jetzt wieder bei null."
 }
