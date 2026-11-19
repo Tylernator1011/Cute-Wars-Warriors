@@ -1,6 +1,6 @@
 {
-  "version": 7,
-  "size": 410584,
-  "sha256": "7fbde5f97742c6e6a3d0aeb324c85bf329efe8c3ab4f3f2f011c44827021f552",
-  "notes": "Neu: Krustus, Käpt'n Wumme, Knackerich, Zwiebock und Sahir mit eigenen Pixel-Modellen. Freischaltbar über Aufgaben oder Münzen."
+  "version": 8,
+  "size": 410774,
+  "sha256": "ecba7329ed81300a7285e58df8c1364373bf0064d069b6b0b45c83a08b3cce7d",
+  "notes": "Jetzt hat jeder Krieger zwei Wege zum Freischalten: eine Aufgabe oder Münzen."
 }
